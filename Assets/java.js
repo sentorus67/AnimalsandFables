@@ -1,9 +1,14 @@
 const searchButton = document.getElementById("searchBtn");
-const userInput = ["wolf", "chicken", "horse", "dophine", "snake"];
+const userInput = ["wolf", "chicken", "horse", "dolphin", "snake"];
+
+
 
 function getAnimalInfo() {
+    const pickAnimal = userInput[getRandomNumber()];
     // const userInput = document.getElementById("animalName").value;
 
+    fetchAnimalInfo(pickAnimal);
+    fetchBookInfo(pickAnimal);
     // if (!userInput) {
     //     alert("Please Enter an Animal");
     //     return;
@@ -13,14 +18,13 @@ function getAnimalInfo() {
     // console.log(userInput);
 
     function getRandomNumber(){
-        const i = Math.floor(Math.random() * 5);
+        const i = Math.floor(Math.random() * userInput.length);
         return i;
-
-        // const pickAnimal = userInput[i]
     }
 
     // Fetch animal info
-    fetch('https://api.api-ninjas.com/v1/animals?name=' + userInput[getRandomNumber()], {
+    function fetchAnimalInfo (animalName){
+    fetch('https://api.api-ninjas.com/v1/animals?name=' + animalName, {
         method: 'GET',
         headers: { 'X-Api-Key': 'tN43+ANwhRe+jQOeMlmEMg==mdTQu9dGB6ZbUzQy'}
     })
@@ -31,21 +35,23 @@ function getAnimalInfo() {
         return response.json();
     })
     .then(data => {
-      
-        for (data of userInput){
-            
-
-            $("/")
-        }
-
         console.log(data);
+        
+        const animalInfoData = data[0].name
+
+        $('.theFactsofAnimals').text(`${data[0].name}`);
+
+      console.log(animalInfoData);
+      
     })
     .catch(error => {
         console.error('Error:', error);
     });
-
-     // fetch story
-     fetch('https://gutendex.com/books/?search=' + userInput, {
+    }
+     
+    // fetch story
+    function fetchBookInfo (animalName){ 
+    fetch('https://gutendex.com/books/?search=' + animalName, {
         method: 'GET',
         credentials: 'same-origin',
         redirect: 'follow',
@@ -63,6 +69,7 @@ function getAnimalInfo() {
         });
 
     }
+}
 
 
 getAnimalInfo();
