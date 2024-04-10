@@ -29,36 +29,47 @@ function getAnimalInfo() {
             .then(data => {
                 console.log(data);
 
-                const pickAnimalArray = data[getRandomAnimal()];
+                // const pickAnimalArray = data[getRandomAnimal()];
 
-                function getRandomAnimal() {
-                    const i = Math.floor(Math.random() * data.length);
-                    return i;
-                }
+                // function getRandomAnimal() {
+                //     const i = Math.floor(Math.random() * data.length);
+                //     return i;
+                // }
 
-                $('.theNameofAnimals').text(`${pickAnimalArray.name}`);
+                const pickAnimalArray = data[0];
+            
+                $('.theNameOfAnAnimal').text(`${pickAnimalArray.name}`);
 
                 if (pickAnimalArray.locations) {
-                    $('.theLocationofAnimals').text(`Location: ${pickAnimalArray.locations}`);
+                    $('.theLocationOfAnAnimal').text(`Location: ${pickAnimalArray.locations}`);
+                } else if (pickAnimalArray.characteristics.location) {
+                    $('.theLocationOfAnAnimal').text(`Location: ${pickAnimalArray.characteristics.location}`);
                 } else {
-                    if (pickAnimalArray.characteristics.location) {
-                        $('.theLocationofAnimals').text(`Location: ${pickAnimalArray.characteristics.location}`);
-                    }else{
-                    $('.theLocationofAnimals').text(`Habitat: ${pickAnimalArray.habitat}`);
-                    }
+                    $('.theLocationOfAnAnimal').text(`Habitat: ${pickAnimalArray.habitat}`);
                 }
 
                 if (pickAnimalArray.characteristics.slogan) {
-                    $('.theCharacteristicsofAnimals').text(`Fun Fact: ${pickAnimalArray.characteristics.slogan}`);
+                    $('.theCharacteristicsOfAnAnimal').text(`Fun Fact: ${pickAnimalArray.characteristics.slogan}`);
+                } else if (pickAnimalArray.characteristics.predators) {
+                    $('.theCharacteristicsOfAnAnimal').text(`Predators: ${pickAnimalArray.characteristics.predators}`);
                 } else {
-                    if (pickAnimalArray.characteristics.predators){
-                        $('.theCharacteristicsofAnimals').text(`Predators: ${pickAnimalArray.characteristics.predators}`);
-                    }else{
-                    $('.theCharacteristicsofAnimals').text(`Prey: ${pickAnimalArray.characteristics.prey}`);
-                    }
+                    $('.theCharacteristicsOfAnAnimal').text(`Prey: ${pickAnimalArray.characteristics.prey}`);
                 }
+
+                if (pickAnimal === userInput[0]) {
+                    $('.imageOfAnAnimal').attr("src", `Assets/Images/Wolf.webp`);                    
+                }else if (pickAnimal === userInput[1]){
+                    $('.imageOfAnAnimal').attr("src", `Assets/Images/Chicken.webp`); 
+                }else if (pickAnimal === userInput[2]){
+                    $('.imageOfAnAnimal').attr("src", `Assets/Images/Horse.webp`);
+                }else if (pickAnimal === userInput[3]){
+                    $('.imageOfAnAnimal').attr("src", `Assets/Images/Dolphin.webp`);
+                }else{
+                    $('.imageOfAnAnimal').attr("src", `Assets/Images/Snake.webp`);
+                }
+                
             })
-            
+
             .catch(error => {
                 console.error('Error:', error);
             });
@@ -76,7 +87,7 @@ function getAnimalInfo() {
             })
             .then(function (data) {
                 if (data && data.results && Array.isArray(data.results)) {
-                    const limitedData = data.results.slice(0, 5); // Limit to 10 books
+                    const limitedData = data.results.slice(0, 5);
                     console.log(limitedData);
                 } else {
                     console.log('No results found or invalid data structure.');
@@ -85,6 +96,7 @@ function getAnimalInfo() {
 
     }
 }
+
 
 // searchButton.addEventListener("click", function (event) {
 //     event.preventDefault();
@@ -150,7 +162,6 @@ document.addEventListener('DOMContentLoaded', () => {
   mobileBuger.addEventListener('click', () => {
     navbarLinks.classList.toggle('is-active');
   });
-
 
 getAnimalInfo();
 
