@@ -1,0 +1,19 @@
+html {
+    background-color: #74431D;
+}
+body {
+    text-align: center;
+}
+h1 {
+    padding-top: 50px;
+}
+.title {
+    color: #7EA8B4
+}
+
+#animalInput{
+    padding-bottom: 20px;
+}
+#logo {
+    max-width: 5vw;
+}
