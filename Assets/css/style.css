@@ -8,6 +8,9 @@ body {
 .title {
     color: #407F3D
 }
+#h1 {
+    color: #407F3D
+}
 
 #animalInput{
     padding-bottom: 20px;
