@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-           <!-- Link to StylesSheet -->
-        <!-- <link rel="stylesheet" href="CSS Framework"/>-->
-        <!-- <link rel="stylesheet" href="reset.css"/> -->
-        <!-- <link rel="stylsheet" href="style.css" -->
+    <!-- Link to StylesSheet -->
+    <!-- <link rel="stylesheet" href="CSS Framework"/>-->
+    <!-- <link rel="stylesheet" href="reset.css"/> -->
+    <!-- <link rel="stylsheet" href="style.css" -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
+    <link rel="stylesheet" href="Assets/css/reset.css">
+    <link rel="stylesheet" href="Assets/css/style.css">
 </head>
 
 <body>
     <header>
-        <h2> Title of Website</h2>
+        <h1 class="title is-1 mt-5"> <!-- mt is margin top --> Animals and Fables</h1>
         <section>
 
             <!-- <p> links to different parts of page</p> -->
@@ -20,6 +24,28 @@
             <a href="#"> section of page</a>
             <a href="#"> section of page</a>
             <a href="#"> section of page</a>
+
+        </section>
+        <section>
+
+            <!-- <p> links to different parts of page</p> -->
+            <nav class="navbar">
+                <div class="navbar-brand">
+                    <a class="navbar-burger" id="burger">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </a>
+                </div>
+                <div class="navbar-menu" id="nav-links">
+                   <div class="navbar-start">
+                                <a class="navbar-item" href="index.html">Back</a>
+                            </div> <div class="navbar-end">
+                            <a href="contents.html" class="navbar-item">Animal Catalogue</a>
+                        <a href="#contributors" target="_blank" class="navbar-item">Contributors</a>
+                    </div>
+                </div>
+            </nav>
 
         </section>
     </header>
@@ -44,12 +70,12 @@
                 <li> Story-4</li>
             </ul>
         </section>
-      
-        
+
+
     </main>
 
     <footer>
-        
+
         <section>
             <!-- <p> Supplementary Information goes here: </p> -->
             <p>This page is powered by [API] and [API]</p>
