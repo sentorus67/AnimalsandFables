@@ -30,37 +30,47 @@ function getAnimalInfo() {
             .then(data => {
                 console.log(data);
 
-                const pickAnimalArray = data[getRandomAnimal()];
-                
-                function getRandomAnimal() {
-                    // if animal name ==wolf
-                    const i = Math.floor(Math.random() * data.length);
-                    return i;
-                }
+                // const pickAnimalArray = data[getRandomAnimal()];
 
-                $('.theNameofAnimals').text(`${pickAnimalArray.name}`);
+                // function getRandomAnimal() {
+                //     const i = Math.floor(Math.random() * data.length);
+                //     return i;
+                // }
+
+                const pickAnimalArray = data[0];
+            
+                $('.theNameOfAnAnimal').text(`Animal of the Day: ${pickAnimalArray.name}`);
 
                 if (pickAnimalArray.locations) {
-                    $('.theLocationofAnimals').text(`Location: ${pickAnimalArray.locations}`);
+                    $('.theLocationOfAnAnimal').text(`Location: ${pickAnimalArray.locations}`);
+                } else if (pickAnimalArray.characteristics.location) {
+                    $('.theLocationOfAnAnimal').text(`Location: ${pickAnimalArray.characteristics.location}`);
                 } else {
-                    if (pickAnimalArray.characteristics.location) {
-                        $('.theLocationofAnimals').text(`Location: ${pickAnimalArray.characteristics.location}`);
-                    }else{
-                    $('.theLocationofAnimals').text(`Habitat: ${pickAnimalArray.habitat}`);
-                    }
+                    $('.theLocationOfAnAnimal').text(`Habitat: ${pickAnimalArray.habitat}`);
                 }
 
                 if (pickAnimalArray.characteristics.slogan) {
-                    $('.theCharacteristicsofAnimals').text(`Fun Fact: ${pickAnimalArray.characteristics.slogan}`);
+                    $('.theCharacteristicsOfAnAnimal').text(`Fun Fact: ${pickAnimalArray.characteristics.slogan}`);
+                } else if (pickAnimalArray.characteristics.predators) {
+                    $('.theCharacteristicsOfAnAnimal').text(`Predators: ${pickAnimalArray.characteristics.predators}`);
                 } else {
-                    if (pickAnimalArray.characteristics.predators){
-                        $('.theCharacteristicsofAnimals').text(`Predators: ${pickAnimalArray.characteristics.predators}`);
-                    }else{
-                    $('.theCharacteristicsofAnimals').text(`Prey: ${pickAnimalArray.characteristics.prey}`);
-                    }
+                    $('.theCharacteristicsOfAnAnimal').text(`Prey: ${pickAnimalArray.characteristics.prey}`);
                 }
+
+                if (pickAnimal === userInput[0]) {
+                    $('.imageOfAnAnimal').attr("src", `Assets/Images/Wolf.webp`);                    
+                }else if (pickAnimal === userInput[1]){
+                    $('.imageOfAnAnimal').attr("src", `Assets/Images/Chicken.webp`); 
+                }else if (pickAnimal === userInput[2]){
+                    $('.imageOfAnAnimal').attr("src", `Assets/Images/Horse.webp`);
+                }else if (pickAnimal === userInput[3]){
+                    $('.imageOfAnAnimal').attr("src", `Assets/Images/Dolphin.webp`);
+                }else{
+                    $('.imageOfAnAnimal').attr("src", `Assets/Images/Snake.webp`);
+                }
+                
             })
-            
+
             .catch(error => {
                 console.error('Error:', error);
             });
@@ -78,43 +88,28 @@ function getAnimalInfo() {
             })
             .then(function (data) {
                 if (data && data.results && Array.isArray(data.results)) {
-                    const limitedData = data.results.slice(0, 5); // Limit to 10 books
+                    const limitedData = data.results.slice(0, 5);
                     console.log(limitedData);
+
+                    $(".book1").wrap("<a href='" + limitedData[0].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[0].title}`);
+                    $(".book2").wrap("<a href='" + limitedData[1].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[1].title}`);
+                    $(".book3").wrap("<a href='" + limitedData[2].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[2].title}`);
+                    $(".book4").wrap("<a href='" + limitedData[3].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[3].title}`);
+
+                    console.log(limitedData[0].formats["text/html"]);
                 } else {
-                    console.log('No results found or invalid data structure.');
+                    console.log("No results found or invalid data structure.");
                 }
+
+                //  ${limitedData[0].formats["text/html"]}
             });
 
     }
 }
 
-// searchButton.addEventListener("click", function (event) {
-//     event.preventDefault();
-//     event.stopPropagation();
-//     getAnimalInfo();
-
-// });
-
-/** ------------------------------------------------------------------------*/ 
-
-//thedogapi/thecatapi
-// const apiKey = live_BJf5ZEd02YfS1DapamineBUzLcBY1wuQrIqP8RhsMJZ3awEkhKOnFymAFQ5ruljd
-// https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=beng&api_key=live_BJf5ZEd02YfS1DapamineBUzLcBY1wuQrIqP8RhsMJZ3awEkhKOnFymAFQ5ruljd
-
-
-// fetch('https://ecos.fws.gov/ecp/pullreports/catalog/species/report/species/export', {
-//     method: 'GET', //GET is the default.
-//     credentials: 'same-origin', // include, *same-origin, omit
-//     redirect: 'follow', // manual, *follow, error
-// })
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         console.log(data);
-//     });
-
-
+document.addEventListener('DOMContentLoaded', () => {
+    fetchBookInfo();
+  });
 // For mobile menu 
 
 // const burgerIcon = document.querySelector('#burger');
@@ -152,7 +147,6 @@ document.addEventListener('DOMContentLoaded', () => {
   mobileBuger.addEventListener('click', () => {
     navbarLinks.classList.toggle('is-active');
   });
-
 
 getAnimalInfo();
 
