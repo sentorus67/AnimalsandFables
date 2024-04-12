@@ -1,19 +1,29 @@
 html {
-    background-color: #74431D;
+    background-color: #392113;
 }
 body {
     text-align: center;
 }
-h1 {
-    padding-top: 50px;
-}
+
 .title {
-    color: #7EA8B4
+    color: #407F3D
+}
+#h1 {
+    color: #407F3D
 }
 
 #animalInput{
     padding-bottom: 20px;
 }
-#logo {
-    max-width: 5vw;
-}
+footer {
+    
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: #407F3D;
+    color: white;
+    text-align: center;
+  }
+  footer a {
+    color: #392113;
+  }
