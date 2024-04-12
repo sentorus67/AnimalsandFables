@@ -19,8 +19,8 @@
 <main>
 <body>
     <header>
-        <h1 class="title is-1 mt-5"> <!-- mt is margin top --> Animals and Fables</h1>
-        <section></section>
+
+        <h1 class="title is-1"> Animals and Fables</h1>
 
             <!-- <p> links to different parts of page</p> -->
             <nav class="navbar">
@@ -44,7 +44,14 @@
    
         </nav>
 
-        </section>
+
+<!--         <h2> Animals and Fables</h2> -->
+<!--         <section> -->
+
+            <form id="animalInput">
+                <input type="text" id="animalName" name="animalName" placeholder="Enter an animal" required>
+                <button type="submit" id="searchBtn">Search</button>
+            </form>
 
             <!-- <p> links to different parts of page</p> -->
 <!--             <a href="Contents.html"> Animal catalouge page</a>
@@ -54,9 +61,11 @@
       
     </header>
 
+
     <main>
 
-        <aside>
+<!--         <aside> -->
+
 
 
             <!-- <p> Place to view and look at other animals</p> -->
@@ -77,20 +86,11 @@
             <!-- <p> Possibly some text pertaining to the animal -->
                         <ul class = "theFactsofAnimals" id="Factoids">
                 <p> Any stories pertaining to the animal will go Here</p>
+                          
                 <li class="theNameOfAnAnimal">Story-1</li>
                 <li class="theLocationOfAnAnimal">Story-2</li>
                 <li class="theCharacteristicsOfAnAnimal">Story-3</li>
-
-            <ul class=" theStoryOfAnimals" id="storiesTold">
-
-                <p> Any stories pertaining to the animal will go Here</p>
-                <li>Ex: Crab eating</li>
-                <li>Ex: Attack of the giant crab</li>
-                <li>Ex: The crab in me</li>
-                <li>Ex: Everyone i love is turning into a crab</li>
-                <li>Story-Nth</li> -->
-
-
+                          
             <ul class=" theStoryOfAnimals" id="StoriesTold">
                 <p> Any stories pertaining to the animal will go Here</p>                    
                 <li class="book1"></li>
@@ -107,10 +107,7 @@
             <!-- <p> map image that based on which section is clicked sends to a catalouge of stories. -->
 <!--         </aside> -->
 
-        </aside>
-    </main>
 
-    <footer c>
 
   <!--    Footer   -->
   <footer>
@@ -131,13 +128,12 @@
     </section>
 </footer>
 
-
     <!-- Link to Javascript -->
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js" ></script>
     <!-- <script src='./Assets/java.js'></script> -->
     <!-- Added Secondary Javascript, Prone to removal -->
     <script src="./Assets/java/java.js"></script>
 
-    <!-- Added Secondary Javascript, Prone to removal -->
    
     <script src="Assets/java/javaSecondary.js"></script>
 

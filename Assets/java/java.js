@@ -23,6 +23,7 @@ function getAnimalInfo() {
                     throw new Error('Network response was not ok');
                 }
                 return response.json();
+
             })
             .then(data => {
                 console.log(data);
