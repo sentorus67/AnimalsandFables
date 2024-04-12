@@ -1,4 +1,3 @@
-const searchButton = document.getElementById("searchBtn");
 const userInput = ["wolf", "chicken", "horse", "dolphin", "snake"];
 
 
