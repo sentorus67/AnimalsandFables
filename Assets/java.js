@@ -25,13 +25,15 @@ function getAnimalInfo() {
                     throw new Error('Network response was not ok');
                 }
                 return response.json();
+
             })
             .then(data => {
                 console.log(data);
 
                 const pickAnimalArray = data[getRandomAnimal()];
-
+                
                 function getRandomAnimal() {
+                    // if animal name ==wolf
                     const i = Math.floor(Math.random() * data.length);
                     return i;
                 }
