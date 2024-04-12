@@ -1,14 +1,16 @@
 const searchButton = document.getElementById("searchBtn");
 const userInput = ["wolf", "chicken", "horse", "dolphin", "snake"];
 
-
-
 function getAnimalInfo() {
+
     const pickAnimal = userInput[getRandomNumber()];
+
 
     fetchAnimalInfo(pickAnimal);
     fetchBookInfo(pickAnimal);
 
+
+    // picks a random index from userInput
     function getRandomNumber() {
         const i = Math.floor(Math.random() * userInput.length);
         return i;
@@ -29,6 +31,7 @@ function getAnimalInfo() {
             .then(data => {
                 console.log(data);
 
+                // if we want to pick a random animal in the array *for future
                 // const pickAnimalArray = data[getRandomAnimal()];
 
                 // function getRandomAnimal() {
@@ -37,8 +40,8 @@ function getAnimalInfo() {
                 // }
 
                 const pickAnimalArray = data[0];
-            
-                $('.theNameOfAnAnimal').text(`${pickAnimalArray.name}`);
+                //Prints api fetched data to the main page
+                $('.theNameOfAnAnimal').text(`Animal of the Day: ${pickAnimalArray.name}`);
 
                 if (pickAnimalArray.locations) {
                     $('.theLocationOfAnAnimal').text(`Location: ${pickAnimalArray.locations}`);
@@ -56,6 +59,7 @@ function getAnimalInfo() {
                     $('.theCharacteristicsOfAnAnimal').text(`Prey: ${pickAnimalArray.characteristics.prey}`);
                 }
 
+                // will post picture if pickAnimal matches the choosen userInput
                 if (pickAnimal === userInput[0]) {
                     $('.imageOfAnAnimal').attr("src", `Assets/Images/Wolf.webp`);                    
                 }else if (pickAnimal === userInput[1]){
@@ -89,40 +93,20 @@ function getAnimalInfo() {
                 if (data && data.results && Array.isArray(data.results)) {
                     const limitedData = data.results.slice(0, 5);
                     console.log(limitedData);
+
+                    $(".book1").wrap("<a href='" + limitedData[0].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[0].title}`);
+                    $(".book2").wrap("<a href='" + limitedData[1].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[1].title}`);
+                    $(".book3").wrap("<a href='" + limitedData[2].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[2].title}`);
+                    $(".book4").wrap("<a href='" + limitedData[3].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[3].title}`);
+
+                    console.log(limitedData[0].formats["text/html"]);
                 } else {
-                    console.log('No results found or invalid data structure.');
+                    console.log("No results found or invalid data structure.");
                 }
             });
 
     }
 }
-
-
-// searchButton.addEventListener("click", function (event) {
-//     event.preventDefault();
-//     event.stopPropagation();
-//     getAnimalInfo();
-
-// });
-
-/** ------------------------------------------------------------------------*/ 
-
-//thedogapi/thecatapi
-// const apiKey = live_BJf5ZEd02YfS1DapamineBUzLcBY1wuQrIqP8RhsMJZ3awEkhKOnFymAFQ5ruljd
-// https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=beng&api_key=live_BJf5ZEd02YfS1DapamineBUzLcBY1wuQrIqP8RhsMJZ3awEkhKOnFymAFQ5ruljd
-
-
-// fetch('https://ecos.fws.gov/ecp/pullreports/catalog/species/report/species/export', {
-//     method: 'GET', //GET is the default.
-//     credentials: 'same-origin', // include, *same-origin, omit
-//     redirect: 'follow', // manual, *follow, error
-// })
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         console.log(data);
-//     });
 
 
 // For mobile menu 
@@ -164,11 +148,4 @@ document.addEventListener('DOMContentLoaded', () => {
   });
 
 getAnimalInfo();
-
-searchButton.addEventListener("click", function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-    getAnimalInfo();
-
-});
 
