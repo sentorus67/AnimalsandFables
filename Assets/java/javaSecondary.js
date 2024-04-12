@@ -1,7 +1,7 @@
-const TestLink= document.getElementById('WolfLink');
-const TestPicture= document.getElementById('Animalpic');
-const TestFact=document.getElementById('Factoids');
-const TestStory= document.getElementById('StoriesTold');
+const TestLink= document.getElementById('wolfLink');
+const TestPicture= document.getElementById('animalPic');
+const TestFact=document.getElementById('factoids');
+const TestStory= document.getElementById('storiesTold');
 
 // All Ids added are subject to change, this is explcitly for the  purpose of testing functions.
 

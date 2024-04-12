@@ -1,4 +1,3 @@
-const searchButton = document.getElementById("searchBtn");
 const userInput = ["wolf", "chicken", "horse", "dolphin", "snake"];
 
 
@@ -135,11 +134,3 @@ function getAnimalInfo() {
   });
 
 getAnimalInfo();
-
-searchButton.addEventListener("click", function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-    getAnimalInfo();
-
-});
-
