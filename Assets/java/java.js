@@ -1,7 +1,6 @@
 const userInput = ["wolf", "chicken", "horse", "dolphin", "snake"];
 
 
-
 function getAnimalInfo() {
     const pickAnimal = userInput[getRandomNumber()];
 
@@ -28,15 +27,43 @@ function getAnimalInfo() {
             .then(data => {
                 console.log(data);
 
-                // const pickAnimalArray = data[getRandomAnimal()];
+                const pickAnimalArray = data[getRandomAnimal()];
+               
+                function getRandomAnimal() {
+                    const i = Math.floor(Math.random() * data.length);
+                    return i;
+                }
 
-                // function getRandomAnimal() {
-                //     const i = Math.floor(Math.random() * data.length);
-                //     return i;
-                // }
+                // if (pickAnimalArray.taxonomy.order !== "Carnivora" || pickAnimalArray.taxonomy.class !== "Aves" || pickAnimalArray.taxonomy.class !== "Reptilia" || pickAnimalArray.taxonomy.class !== Mammalia){
+                //     getRandomNumber();
+                // }else{
+                //     return;
+                // };
+                let findTrueAnimal = true;
 
-                const pickAnimalArray = data[0];
-            
+                while (findTrueAnimal) {
+                
+                  if (pickAnimalArray === userInput[0] && pickAnimalArray.taxonomy.order === "Carnivora") { 
+                    findTrueAnimal = false;
+                  }else if (pickAnimalArray === userInput[1] && pickAnimalArray.taxonomy.class === "Aves"){
+                    findTrueAnimal = false;
+
+                }else if (pickAnimalArray === userInput[2] && pickAnimalArray.taxonomy.class === "Mammalia"){
+                    findTrueAnimal = false; 
+
+                  }else if (pickAnimalArray === userInput[3] && pickAnimalArray.name !== "Mahi Mahi (Dolphin Fish)"){
+                    findTrueAnimal = false;
+                      
+                  }else if (pickAnimalArray === userInput[4] && pickAnimalArray.taxonomy.class === "Reptilia"){
+                    findTrueAnimal = false;
+                      
+                  }else{
+                    findTrueAnimal = false;
+                  }
+                }
+
+                // const pickAnimalArray = data[0];
+            function printingAnimal() {
                 $('.theNameOfAnAnimal').text(`Animal of the Day: ${pickAnimalArray.name}`);
 
                 if (pickAnimalArray.locations) {
@@ -65,10 +92,13 @@ function getAnimalInfo() {
                     $('.imageOfAnAnimal').attr("src", `Assets/Images/Dolphin.webp`);
                 }else{
                     $('.imageOfAnAnimal').attr("src", `Assets/Images/Snake.webp`);
-                }
-                
-            })
+                };
+    
 
+            }
+
+            printingAnimal();
+        })
             .catch(error => {
                 console.error('Error:', error);
             });
@@ -105,9 +135,6 @@ function getAnimalInfo() {
     }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    fetchBookInfo();
-  });
 // For mobile menu 
 
 // const burgerIcon = document.querySelector('#burger');
