@@ -37,7 +37,7 @@ function getAnimalInfo() {
 
                 const pickAnimalArray = data[0];
             
-                $('.theNameOfAnAnimal').text(`${pickAnimalArray.name}`);
+                $('.theNameOfAnAnimal').text(`Animal of the Day: ${pickAnimalArray.name}`);
 
                 if (pickAnimalArray.locations) {
                     $('.theLocationOfAnAnimal').text(`Location: ${pickAnimalArray.locations}`);
@@ -88,43 +88,56 @@ function getAnimalInfo() {
                 if (data && data.results && Array.isArray(data.results)) {
                     const limitedData = data.results.slice(0, 5);
                     console.log(limitedData);
+
+                    $(".book1").wrap("<a href='" + limitedData[0].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[0].title}`);
+                    $(".book2").wrap("<a href='" + limitedData[1].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[1].title}`);
+                    $(".book3").wrap("<a href='" + limitedData[2].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[2].title}`);
+                    $(".book4").wrap("<a href='" + limitedData[3].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[3].title}`);
+
+                    console.log(limitedData[0].formats["text/html"]);
                 } else {
-                    console.log('No results found or invalid data structure.');
+                    console.log("No results found or invalid data structure.");
                 }
+
+                //  ${limitedData[0].formats["text/html"]}
             });
 
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    fetchBookInfo();
+  });
+// For mobile menu 
 
-// searchButton.addEventListener("click", function (event) {
-//     event.preventDefault();
-//     event.stopPropagation();
-//     getAnimalInfo();
+// const burgerIcon = document.querySelector('#burger');
+// const navbarMenu = document.querySelector('#nav-links');
 
+// burgerIcon.addEventListener('click', () => {
+//     navbarMenu.classList.toggle('is-active')
 // });
 
-/** ------------------------------------------------------------------------*/ 
+document.addEventListener('DOMContentLoaded', () => {
 
-//thedogapi/thecatapi
-// const apiKey = live_BJf5ZEd02YfS1DapamineBUzLcBY1wuQrIqP8RhsMJZ3awEkhKOnFymAFQ5ruljd
-// https://api.thecatapi.com/v1/images/search?limit=10&breed_ids=beng&api_key=live_BJf5ZEd02YfS1DapamineBUzLcBY1wuQrIqP8RhsMJZ3awEkhKOnFymAFQ5ruljd
-
-
-// fetch('https://ecos.fws.gov/ecp/pullreports/catalog/species/report/species/export', {
-//     method: 'GET', //GET is the default.
-//     credentials: 'same-origin', // include, *same-origin, omit
-//     redirect: 'follow', // manual, *follow, error
-// })
-//     .then(function (response) {
-//         return response.json();
-//     })
-//     .then(function (data) {
-//         console.log(data);
-//     });
-
-
-// For mobile menu 
+    // Get all "navbar-burger" elements
+    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
+  
+    // Add a click event on each of them
+    $navbarBurgers.forEach( el => {
+      el.addEventListener('click', () => {
+  
+        // Get the target from the "data-target" attribute
+        const target = el.dataset.target;
+        const $target = document.getElementById(target);
+  
+        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
+        el.classList.toggle('is-active');
+        $target.classList.toggle('is-active');
+  
+      });
+    });
+  
+  });
 
   const mobileBuger = document.querySelector("#burger");
   const navbarLinks = document.querySelector("#nav-links");
