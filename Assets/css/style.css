@@ -5,6 +5,7 @@ body {
     text-align: center;
     /* background-image: url(https://media.istockphoto.com/id/1088991402/photo/blue-gradient-soft-background.webp?b=1&s=170667a&w=0&k=20&c=0-y1Fp1T8Ia7w7vi1xDEC8Cbuon3UEFIMrGRPrWeKiU=); */
     background: linear-gradient(110.3deg, rgb(238, 179, 123) 8.7%, rgb(216, 103, 77) 47.5%, rgb(114, 43, 54) 89.1%);;
+   
 }
 
 .title {
@@ -13,26 +14,52 @@ body {
 #h1 {
     color: #407F3D
 }
+
+h2{
+   font-family:Arial, Helvetica, sans-serif;
+   font-weight: bold;
+   font-size: 20px;
+}
 #animalPic {
-    max-width: 50vw;
+    max-width: 35vw;
+    float: left;
+    padding-left: 50px;
 }
 
 #animalInput{
     padding-bottom: 20px;
 }
+
+.theFactsofAnimals{
+  
+    padding-top: 20px;
+    text-align: left;
+}
+.theNameOfAnAnimal .h2{
+    text-align: center;
+}
+.theStoryOfAnimals{
+    display:inline-block;
+    position:absolute;
+}
 footer {
     
     left: 0;
     bottom: 0;
+    position:fixed;
     width: 100%;
     background-color: #407F3D;
     color: white;
     text-align: center;
+    margin-top:auto;
   }
   footer a {
     color: #392113;
   }
   
+  .theMainOfAnimals{
+    display:block;
+  }
   .image-gallery{
     display: flex;
     flex-wrap: wrap;

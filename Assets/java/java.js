@@ -65,7 +65,14 @@ function getAnimalInfo() {
 
                 // const pickAnimalArray = data[0];
             function printingAnimal() {
-                $('.theNameOfAnAnimal').text(`Animal of the Day: ${pickAnimalArray.name}`);
+                // $('.theNameOfAnAnimal').text(`Animal of the Day: ${pickAnimalArray.name}`);
+                $('.theNameOfAnAnimal').text('Animal of the Day:').css({
+                    'font-family': 'Arial, sans-serif',
+                    'font-size': '20px',
+                    'color': 'darkgreen',
+                    'font-weight': 'bold'
+                  });
+                $('.theNameOfAnAnimal').text(`${pickAnimalArray.name}`);
 
                 if (pickAnimalArray.locations) {
                     $('.theLocationOfAnAnimal').text(`Location: ${pickAnimalArray.locations}`);
