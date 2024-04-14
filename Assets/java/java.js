@@ -27,8 +27,8 @@ const pickAnimal = userInput[getRandomNumber()];
     }
 
     // Fetch animal info
-    function fetchAnimalInfo(pickAnimal) {
-        fetch('https://api.api-ninjas.com/v1/animals?name=' + pickAnimal, {
+    function fetchAnimalInfo(animalName) {
+        fetch('https://api.api-ninjas.com/v1/animals?name=' + animalName, {
             method: 'GET',
             headers: { 'X-Api-Key': 'tN43+ANwhRe+jQOeMlmEMg==mdTQu9dGB6ZbUzQy' }
         })
@@ -137,8 +137,8 @@ const pickAnimal = userInput[getRandomNumber()];
     }
 
     // fetch story
-    function fetchBookInfo(pickAnimal) {
-        fetch('https://gutendex.com/books/?search=' + pickAnimal, {
+    function fetchBookInfo(animalName) {
+        fetch('https://gutendex.com/books/?search=' + animalName, {
             method: 'GET',
             credentials: 'same-origin',
             redirect: 'follow',
