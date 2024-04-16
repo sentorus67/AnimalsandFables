@@ -22,10 +22,23 @@ h2 {
   font-weight: bold;
 
 }
+.theLocationOfAnAnimal {
+  background: linear-gradient(to right, rgb(182, 244, 146), rgb(51, 139, 147));
+  color: whitesmoke;
+  align-content: center;
+}
+
+.theCharacteristicsOfAnAnimal {  
+  background: linear-gradient(to left, rgb(182, 244, 146), rgb(51, 139, 147));
+  color: whitesmoke;
+  align-content: center;
+}
+
 
 #storyH2 {
   background: linear-gradient(to right, rgb(182, 244, 146), rgb(51, 139, 147));
   color: whitesmoke;
+  
 }
 
 nav {

@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.0/css/bulma.min.css">
     <link rel="stylesheet" href="Assets/css/reset.css">
     <link rel="stylesheet" href="Assets/css/style.css">
+    <title>Animal Catalogue</title>
 </head>
 
 <body>
@@ -46,7 +47,7 @@
                         <a class="navbar-item" href="index.html">Back</a>
                     </div>
                     <div class="navbar-end">
-                        
+
                     </div>
                 </div>
             </nav>
@@ -57,35 +58,46 @@
     <main>
         <!-- <p> This page will hold read stories and/or a catalouge of all the available animals </p> -->
         <!-- images are are large so they need to be styled to size -->
+
         <section class="availableAnimals">
+
             <ul class="image-gallery">
+                </div>
+                </div>
                 <li>
-                     <img src="Assets/Images/Chicken.webp" alt="picture of a chicken">
-                     <div class="overlay"><span>Chicken</span></div>
+                    <img src="Assets/Images/Chicken.webp" alt="picture of a chicken">
+                    <div class="overlay"><span>Chicken</span></div>
                 </li>
                 <li>
-                     <img src="Assets/Images/Dolphin.webp" alt="picture of a dolpin">
-                     <div class="overlay"><span>Dolpin</span></div>
-                     
+                    <img src="Assets/Images/Dolphin.webp" alt="picture of a dolpin">
+                    <div class="overlay"><span>Dolpin</span></div>
                 </li>
                 <li>
-                 <img src="Assets/Images/Horse.webp" alt="picture of a horse">
-                 <div class="overlay"><span>Horse</span></div>
-
+                    <img src="Assets/Images/Horse.webp" alt="picture of a horse">
+                    <div class="overlay"><span>Horse</span></div>
                 </li>
                 <li>
-                 <img src="Assets/Images/Snake.webp" alt="picture of a snake">
-                 <div class="overlay"><span>Snake</span></div>
-
+                    <img src="Assets/Images/Snake.webp" alt="picture of a snake">
+                    <div class="overlay"><span>Snake</span></div>
                 </li>
                 <li>
-                     <img src="Assets/Images/Wolf.webp" alt="picture of a wolf ">
-                     <div class="overlay"><span>Wolf</span></div>
-
+                    <img src="Assets/Images/Wolf.webp" alt="picture of a wolf ">
+                    <div class="overlay"><span>Wolf</span></div>
                 </li>
-
-
             </ul>
+            <!-- Modal structure -->
+
+            <div id="animalModal" class="modal">
+                <div class="modal-background"></div>
+                <div class="modal-content">
+                    <div class="box">
+                        <p id="modalTitle"></p>
+                        <img id="modalImage" src="" alt="">
+                        <p id="modalDescription"></p>
+                    </div>
+                </div>
+                <button class="modal-close is-large" aria-label="close"></button>
+            </div>
 
 
             <!-- The above will have a link that, when clicked, returns the user to the index with the animal being the main subjects -->
@@ -112,10 +124,12 @@
         </section>
     </footer>
 
+
+
     <!-- Link to Javascript -->
 
-    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js" ></script>
-   
+    <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"></script>
+
 
 
     <script src="Assets/java/java.js"></script>

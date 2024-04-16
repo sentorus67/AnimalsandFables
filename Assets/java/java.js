@@ -1,4 +1,6 @@
 const userInput = ["wolf", "chicken", "horse", "dolphin", "snake"];
+
+let animalData = {};
 // let animalPickedToday = JSON.parse(localStorage.getItem("currentDay"));
 // const currentDay = dayjs().format("MM-DD-YYYY");
 
@@ -7,15 +9,15 @@ const userInput = ["wolf", "chicken", "horse", "dolphin", "snake"];
 // }
 
 function getAnimalInfo() {
-//     if (!newDay()) {
-//         console.log("Animal of the day already picked.");
-//         return;
-//     }
+    //     if (!newDay()) {
+    //         console.log("Animal of the day already picked.");
+    //         return;
+    //     }
 
-//     animalPickedToday = currentDay;
-//     localStorage.setItem("currentDay", animalPickedToday);
+    //     animalPickedToday = currentDay;
+    //     localStorage.setItem("currentDay", animalPickedToday);
 
-const pickAnimal = userInput[getRandomNumber()];
+    const pickAnimal = userInput[getRandomNumber()];
 
     fetchBookInfo(pickAnimal);
     fetchAnimalInfo(pickAnimal);
@@ -40,6 +42,11 @@ const pickAnimal = userInput[getRandomNumber()];
 
             })
             .then(data => {
+                // malcolm added ---- store fetched data in teh global object
+                if (data && data.length > 0) {
+                    animalData[animalName] = data[0]; // Store first result for the given animal name
+                } 
+                // ---------------------
                 console.log(data);
 
                 const pickAnimalArray = data[getRandomAnimal()];
@@ -98,7 +105,7 @@ const pickAnimal = userInput[getRandomNumber()];
                         'font-size': '20px',
                         'color': 'darkgreen',
                         'font-weight': 'bold'
-                      });
+                    });
                     //can be put on the same line as Animal of the Day unless we are trying to style them differently?
                     $('.theNameOfAnAnimal').text(`${pickAnimalArray.name}`);
 
@@ -148,6 +155,9 @@ const pickAnimal = userInput[getRandomNumber()];
             })
             .then(function (data) {
                 if (data && data.results && Array.isArray(data.results)) {
+                    // malcolm added - stpre feetched data in the global object
+                    animalData[animalName].book =  data.results.slice(0, 1)[0]; // store the first book result.  
+                    // ------------------------
                     const limitedData = data.results.slice(0, 5);
                     console.log(limitedData);
 
@@ -168,13 +178,6 @@ const pickAnimal = userInput[getRandomNumber()];
 }
 // For mobile menu 
 
-// const burgerIcon = document.querySelector('#burger');
-// const navbarMenu = document.querySelector('#nav-links');
-
-// burgerIcon.addEventListener('click', () => {
-//     navbarMenu.classList.toggle('is-active')
-// });
-
 const mobileBuger = document.querySelector("#burger");
 const navbarLinks = document.querySelector("#nav-links");
 
@@ -183,3 +186,75 @@ mobileBuger.addEventListener('click', () => {
 });
 
 getAnimalInfo();
+
+
+// modal for contents page 
+
+// event listener for images
+
+document.querySelectorAll('.image-gallery li').forEach(item => {
+    item.addEventListener('click', event => {
+        const animalName = item.dataset.animal;
+
+        // Access the global object to retrieve data for the clicked animal
+        const animalInfo = animalData[animalName];
+
+        // Get modal elements
+        const modal = document.getElementById('animalModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalDescription = document.getElementById('modalDescription');
+
+        // Populate modal with data
+        if (animalInfo) {
+            // Title: animal name and book title if available
+            let title = `Animal: ${animalName}`;
+            if (animalInfo.book) {
+                title += ` - Book: ${animalInfo.book.title}`;
+            }
+            modalTitle.textContent = title;
+
+            // Description: fun fact or other information
+            let description = `Fun Fact: ${animalInfo.characteristics.slogan || "No available fun fact"}`;
+            modalDescription.textContent = description;
+
+            // Display the modal
+            modal.classList.add('is-active');
+        } else {
+            console.log('No information available for this animal');
+        }
+    });
+});
+
+
+
+// document.querySelectorAll('.image-gallery li').forEach(item => {
+//     item.addEventListener('click', event => {
+//         const animalName = item.dataset.animal;
+
+
+//         // get modal elements
+
+//         const modal = document.getElementById('animalModal');
+//         const modalTitle = document.getElementById('modalTitle');
+//         const modalImage = document.getElementById('modalImage');
+//         const modalDescription = document.getElementById('modalDescription');
+
+//         // populate modal content 
+
+//         modalTitle.textContent = `Animal: ${animalName}`;
+      
+//         modalDescription.textContent = `Description for ${animalName}`;
+
+//         // show modal 
+
+//         modal.classList.add('is-active')
+
+//     });
+// });
+
+// add event listener for close button
+
+document.querySelector('.modal-close').addEventListener('click', () => {
+    const modal = document.getElementById('animalModal');
+    modal.classList.remove('is-active');
+});
