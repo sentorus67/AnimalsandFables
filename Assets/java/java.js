@@ -1,21 +1,8 @@
 const userInput = ["wolf", "chicken", "horse", "dolphin", "snake"];
-// let animalPickedToday = JSON.parse(localStorage.getItem("currentDay"));
-// const currentDay = dayjs().format("MM-DD-YYYY");
-
-// function newDay() {
-//     return animalPickedToday !== currentDay;
-// }
 
 function getAnimalInfo() {
-//     if (!newDay()) {
-//         console.log("Animal of the day already picked.");
-//         return;
-//     }
 
-//     animalPickedToday = currentDay;
-//     localStorage.setItem("currentDay", animalPickedToday);
-
-const pickAnimal = userInput[getRandomNumber()];
+let pickAnimal = userInput[getRandomNumber()];
 
     fetchBookInfo(pickAnimal);
     fetchAnimalInfo(pickAnimal);
@@ -42,7 +29,7 @@ const pickAnimal = userInput[getRandomNumber()];
             .then(data => {
                 console.log(data);
 
-                const pickAnimalArray = data[getRandomAnimal()];
+               let pickAnimalArray = data[getRandomAnimal()];
 
                 function getRandomAnimal() {
                     const i = Math.floor(Math.random() * data.length);
@@ -60,23 +47,23 @@ const pickAnimal = userInput[getRandomNumber()];
                     if (pickAnimalArray) {
                         const taxonomy = pickAnimalArray.taxonomy;
 
-                        if (pickAnimal === userInput[0] && taxonomy.family === "Canidae") {
+                        if (pickAnimal === userInput[0] && taxonomy.family == "Canidae") {
                             printingAnimal();
                             console.log(pickAnimalArray);
                             return true;
-                        } else if (pickAnimal === userInput[1] && taxonomy.class === "Aves") {
+                        } else if (pickAnimal === userInput[1] && taxonomy.class == "Aves") {
                             printingAnimal();
                             console.log(pickAnimalArray);
                             return true;
-                        } else if (pickAnimal === userInput[2] && taxonomy.family === "Equidae") {
+                        } else if (pickAnimal === userInput[2] && taxonomy.family == "Equidae") {
                             printingAnimal();
                             console.log(pickAnimalArray);
                             return true;
-                        } else if (pickAnimal === userInput[3] && taxonomy.family === "Delphinidae") {
+                        } else if (pickAnimal === userInput[3] && taxonomy.family == "Delphinidae") {
                             printingAnimal();
                             console.log(pickAnimalArray);
                             return true;
-                        } else if (pickAnimal === userInput[4] && taxonomy.class === "Reptilia") {
+                        } else if (pickAnimal === userInput[4] && taxonomy.class == "Reptilia") {
                             printingAnimal();
                             console.log(pickAnimalArray);
                             return true;
@@ -87,10 +74,10 @@ const pickAnimal = userInput[getRandomNumber()];
                         }
                     } else {
                         console.log("still not working?!?!");
+                        return true;
                     }
                 }
 
-                // const pickAnimalArray = data[0];
                 function printingAnimal() {
                     // $('.theNameOfAnAnimal').text(`Animal of the Day: ${pickAnimalArray.name}`);
                     $('.theNameOfAnAnimal').text(`Animal of the Day:`).css({
@@ -136,9 +123,14 @@ const pickAnimal = userInput[getRandomNumber()];
             });
     }
 
+    function getRandomBook() {
+        const i = Math.floor(Math.random() * 5);
+        return i;
+    }
+
     // fetch story
     function fetchBookInfo(animalName) {
-        fetch('https://gutendex.com/books/?search=' + animalName, {
+        fetch('https://gutendex.com/books/?topic=animal&search=' + animalName, {
             method: 'GET',
             credentials: 'same-origin',
             redirect: 'follow',
@@ -147,55 +139,22 @@ const pickAnimal = userInput[getRandomNumber()];
                 return response.json();
             })
             .then(function (data) {
+                console.log(data.results);
                 if (data && data.results && Array.isArray(data.results)) {
                     const limitedData = data.results.slice(0, 5);
                     console.log(limitedData);
-
-                    $(".book1").wrap("<a href='" + limitedData[0].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[0].title}`);
-                    $(".book2").wrap("<a href='" + limitedData[1].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[1].title}`);
-                    $(".book3").wrap("<a href='" + limitedData[2].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[2].title}`);
-                    $(".book4").wrap("<a href='" + limitedData[3].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[3].title}`);
+                    
+                    $(".book1").wrap("<a href='" + limitedData[getRandomBook()].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[getRandomBook()].title}`);
 
                     console.log(limitedData[0].formats["text/html"]);
                 } else {
                     console.log("No results found or invalid data structure.");
+                    return;
                 }
-
-                //  ${limitedData[0].formats["text/html"]}
             });
 
     }
 }
-// For mobile menu 
-
-// const burgerIcon = document.querySelector('#burger');
-// const navbarMenu = document.querySelector('#nav-links');
-
-// burgerIcon.addEventListener('click', () => {
-//     navbarMenu.classList.toggle('is-active')
-// });
-
-document.addEventListener('DOMContentLoaded', () => {
-
-    // Get all "navbar-burger" elements
-    const $navbarBurgers = Array.prototype.slice.call(document.querySelectorAll('.navbar-burger'), 0);
-
-    // Add a click event on each of them
-    $navbarBurgers.forEach(el => {
-        el.addEventListener('click', () => {
-
-            // Get the target from the "data-target" attribute
-            const target = el.dataset.target;
-            const $target = document.getElementById(target);
-
-            // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
-            el.classList.toggle('is-active');
-            $target.classList.toggle('is-active');
-
-        });
-    });
-
-});
 
 const mobileBuger = document.querySelector("#burger");
 const navbarLinks = document.querySelector("#nav-links");
@@ -205,3 +164,8 @@ mobileBuger.addEventListener('click', () => {
 });
 
 getAnimalInfo();
+
+// ---------------------------------
+
+// randomize a set selection of books that pop up in an array
+//conditional about if book is picked excerpt is printed along with it.
