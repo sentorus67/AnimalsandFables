@@ -22,10 +22,27 @@ h2 {
   font-weight: bold;
 
 }
+.theLocationOfAnAnimal {
+  background: linear-gradient(to right, rgb(182, 244, 146), rgb(51, 139, 147));
+  color: whitesmoke;
+  align-content: center;
+}
+
+.theCharacteristicsOfAnAnimal {  
+  background: linear-gradient(to left, rgb(182, 244, 146), rgb(51, 139, 147));
+  color: whitesmoke;
+  align-content: center;
+}
+
 
 #storyH2 {
   background: linear-gradient(to right, rgb(182, 244, 146), rgb(51, 139, 147));
   color: whitesmoke;
+  
+}
+
+nav {
+  text-align: left;
 }
 
 
@@ -123,8 +140,8 @@ footer a {
 /* hover */
 .image-gallery li:hover .overlay {
   transform: scale(1);
-
-}aside {
+}
+aside {
   width: 40%;
   padding-left: 0.5rem;
   margin-left: 0.5rem;
@@ -138,6 +155,3 @@ aside > p {
   margin: 0.5rem;
   color: darkgreen;
 }
-
-}
-
