@@ -175,6 +175,9 @@ const pickAnimal = userInput[getRandomNumber()];
 //     navbarMenu.classList.toggle('is-active')
 // });
 
+
+
+
 const mobileBuger = document.querySelector("#burger");
 const navbarLinks = document.querySelector("#nav-links");
 

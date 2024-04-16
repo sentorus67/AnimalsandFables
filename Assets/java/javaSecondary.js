@@ -1,3 +1,6 @@
+
+
+
 const TestLink= document.getElementById('wolfLink');
 const TestPicture= document.getElementById('animalPic');
 const TestFact=document.getElementById('factoids');

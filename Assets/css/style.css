@@ -28,9 +28,11 @@ h2 {
   color: whitesmoke;
 }
 
+
 nav {
   text-align: left;
 }
+
 
 #animalPic {
   max-width: 35vw;
@@ -121,6 +123,7 @@ footer a {
 /* hover */
 .image-gallery li:hover .overlay {
   transform: scale(1);
+
 }aside {
   width: 40%;
   padding-left: 0.5rem;
@@ -135,3 +138,6 @@ aside > p {
   margin: 0.5rem;
   color: darkgreen;
 }
+
+}
+
