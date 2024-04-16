@@ -156,6 +156,16 @@ let pickAnimal = userInput[getRandomNumber()];
     }
 }
 
+// For mobile menu 
+
+// const burgerIcon = document.querySelector('#burger');
+// const navbarMenu = document.querySelector('#nav-links');
+
+// burgerIcon.addEventListener('click', () => {
+//     navbarMenu.classList.toggle('is-active')
+// });
+
+
 const mobileBuger = document.querySelector("#burger");
 const navbarLinks = document.querySelector("#nav-links");
 
@@ -165,7 +175,4 @@ mobileBuger.addEventListener('click', () => {
 
 getAnimalInfo();
 
-// ---------------------------------
 
-// randomize a set selection of books that pop up in an array
-//conditional about if book is picked excerpt is printed along with it.
