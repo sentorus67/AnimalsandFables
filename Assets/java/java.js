@@ -1,21 +1,25 @@
 const userInput = ["wolf", "chicken", "horse", "dolphin", "snake"];
-// let animalPickedToday = JSON.parse(localStorage.getItem("currentDay"));
-// const currentDay = dayjs().format("MM-DD-YYYY");
 
-// function newDay() {
-//     return animalPickedToday !== currentDay;
-// }
+
+const TestLink= document.getElementById('wolfLink');
+const TestPicture= document.getElementById('animalPic');
+const TestFact=document.getElementById('factoids');
+const TestStory= document.getElementById('storiesTold');
+const TestPast= document.getElementById('previousDays');
+const bookMarker= document.getElementById('saveButton');
+
+let animalbox=[];
+const today=dayjs();
+const todayFormatted=today.format('DD/MM/YYYY');
+
+const Tomorrow=(today.add(1,'day')).format('DD/MM/YYYY');
+
 
 function getAnimalInfo() {
-//     if (!newDay()) {
-//         console.log("Animal of the day already picked.");
-//         return;
-//     }
 
-//     animalPickedToday = currentDay;
-//     localStorage.setItem("currentDay", animalPickedToday);
+let pickAnimal = userInput[getRandomNumber()];
 
-const pickAnimal = userInput[getRandomNumber()];
+
 
     fetchBookInfo(pickAnimal);
     fetchAnimalInfo(pickAnimal);
@@ -40,19 +44,17 @@ const pickAnimal = userInput[getRandomNumber()];
 
             })
             .then(data => {
-                console.log(data);
+                
 
-                const pickAnimalArray = data[getRandomAnimal()];
+                let pickAnimalArray = data[getRandomAnimal()];
 
                 function getRandomAnimal() {
                     const i = Math.floor(Math.random() * data.length);
                     return i;
                 }
 
-                trueAnimal();
-
-                while (!trueAnimal(pickAnimalArray)) {
-                    let pickAnimal = userInput[getRandomNumber()];
+                while (!trueAnimal()) {
+                    pickAnimal = userInput[getRandomNumber()];
                     pickAnimalArray = fetchAnimalInfo(pickAnimal);
                 }
 
@@ -72,7 +74,7 @@ const pickAnimal = userInput[getRandomNumber()];
                             printingAnimal();
                             console.log(pickAnimalArray);
                             return true;
-                        } else if (pickAnimal === userInput[3] && taxonomy.family === "Delphinidae") {
+                        } else if (pickAnimal === userInput[3] && taxonomy.class === "Mammalia") {
                             printingAnimal();
                             console.log(pickAnimalArray);
                             return true;
@@ -81,16 +83,18 @@ const pickAnimal = userInput[getRandomNumber()];
                             console.log(pickAnimalArray);
                             return true;
                         } else {
-                            console.log("not working");
+                            console.log("Matching");
+                            console.log(pickAnimal);
                             console.log(taxonomy.class || taxonomy.family);
                             return false;
                         }
-                    } else {
-                        console.log("still not working?!?!");
+                    } 
+                    else {
+                        console.log("still Matching....");
+                        return true;
                     }
                 }
 
-                // const pickAnimalArray = data[0];
                 function printingAnimal() {
                     // $('.theNameOfAnAnimal').text(`Animal of the Day: ${pickAnimalArray.name}`);
                     $('.theNameOfAnAnimal').text(`Animal of the Day:`).css({
@@ -149,19 +153,16 @@ const pickAnimal = userInput[getRandomNumber()];
             .then(function (data) {
                 if (data && data.results && Array.isArray(data.results)) {
                     const limitedData = data.results.slice(0, 5);
-                    console.log(limitedData);
 
                     $(".book1").wrap("<a href='" + limitedData[0].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[0].title}`);
                     $(".book2").wrap("<a href='" + limitedData[1].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[1].title}`);
                     $(".book3").wrap("<a href='" + limitedData[2].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[2].title}`);
                     $(".book4").wrap("<a href='" + limitedData[3].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[3].title}`);
 
-                    console.log(limitedData[0].formats["text/html"]);
                 } else {
                     console.log("No results found or invalid data structure.");
                 }
 
-                //  ${limitedData[0].formats["text/html"]}
             });
 
     }
@@ -197,6 +198,86 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+
+function todaysAnimal()
+{
+    animalbox=JSON.parse(localStorage.getItem('pastAnimals'));
+    if(animalbox==null)
+    {
+        animalbox=[];
+    }
+    storeAnimals();
+}
+
+function storeAnimals()
+{
+     animalbox=JSON.parse(localStorage.getItem('pastAnimals'));
+     if(animalbox==null)
+     {
+        animalbox=[];
+     }
+     const viewedAnimal=
+     {
+     animalImage: $('#animalPic').attr('src'),
+     animalName: $('.theNameOfAnAnimal').text(),
+     animalLocation: $('.theLocationOfAnAnimal').text(),
+     animalFacts: $('.theCharacteristicsOfAnAnimal').text(),
+     book1: $(".book1").text(),
+     book2: $(".book2").text(),
+     book3: $(".book3").text(),
+     book4: $(".book4").text(),
+     date: todayFormatted,
+     }
+   
+     animalbox.push(viewedAnimal);
+     console.log(viewedAnimal);
+     console.log(viewedAnimal.date);
+     localStorage.setItem('pastAnimals',JSON.stringify(animalbox));
+     alert(' This animal has been bookmarked.');
+
+     pastDate=document.createElement('button')
+     pastDate.textContent=`${viewedAnimal.date}: ${viewedAnimal.animalName}`;
+     TestPast.appendChild(pastDate);
+     pastDate.addEventListener('click',function(){
+         retrieveAnimal(viewedAnimal)
+     });
+}
+
+function retrieveAnimal(dateValue)
+{
+    animalbox=JSON.parse(localStorage.getItem('pastAnimals'));
+    console.log( dateValue);
+    if(animalbox!=null ){
+        pickedDate=animalbox[dateValue];
+        $('#animalPic').attr('src',pickedDate.animalImage);
+        $('.theNameOfAnAnimal').text(pickedDate.animalName);
+        $('.theLocationOfAnAnimal').text(pickedDate.animalLocation);
+        $('.theCharacteristicsOfAnAnimal').text(pickedDate.animalFacts);
+        $(".book1").text(pickedDate.book1);
+        $(".book2").text(pickedDate.book2);
+        $(".book3").text(pickedDate.book3);
+        $(".book4").text(pickedDate.book4);
+
+    }
+}
+
+function setSavedAnimals()
+{
+    animalbox=JSON.parse(localStorage.getItem('pastAnimals'));
+    if(animalbox !=null){
+        for (let index = 0; index < animalbox.length; index++) {
+            pastDate=document.createElement('button')
+            pastDate.textContent=`${animalbox[index].date}: ${animalbox[index].animalName}  `;
+            TestPast.appendChild(pastDate);
+            pastDate.addEventListener('click',function(){
+                retrieveAnimal(index)
+            });
+
+        }
+    }
+    console.log(TestPast);
+}
+
 const mobileBuger = document.querySelector("#burger");
 const navbarLinks = document.querySelector("#nav-links");
 
@@ -204,4 +285,12 @@ mobileBuger.addEventListener('click', () => {
     navbarLinks.classList.toggle('is-active');
 });
 
-getAnimalInfo();
+
+
+
+$(document).ready(function (){
+    if(bookMarker!=undefined){
+saveButton.addEventListener('click',todaysAnimal);}
+ setSavedAnimals();
+ getAnimalInfo();
+});
