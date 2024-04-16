@@ -14,9 +14,15 @@ const todayFormatted=today.format('DD/MM/YYYY');
 const Tomorrow=(today.add(1,'day')).format('DD/MM/YYYY');
 
 function getAnimalInfo() {
+    //     if (!newDay()) {
+    //         console.log("Animal of the day already picked.");
+    //         return;
+    //     }
 
-let pickAnimal = userInput[getRandomNumber()];
+    //     animalPickedToday = currentDay;
+    //     localStorage.setItem("currentDay", animalPickedToday);
 
+    const pickAnimal = userInput[getRandomNumber()];
 
     fetchBookInfo(pickAnimal);
     fetchAnimalInfo(pickAnimal);
