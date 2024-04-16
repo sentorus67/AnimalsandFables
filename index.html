@@ -13,14 +13,13 @@
 
     <link rel="stylesheet" href="Assets/css/reset.css">
     <link rel="stylesheet" href="Assets/css/style.css">
-    <link rel="stylesheet" href="Assets/css/reset.css">
-    <link rel="stylesheet" href="Assets/css/style.css">
 </head>
 <main>
-<body>
-    <header>
-        <h1 class="title is-1 mt-5"> <!-- mt is margin top --> Animals and Fables</h1>
-        <section></section>
+
+    <body>
+        <header>
+
+            <h1 class="title is-1"> Animals and Fables</h1>
 
             <!-- <p> links to different parts of page</p> -->
             <nav class="navbar">
@@ -35,136 +34,108 @@
                     <div class="navbar-end">
                         <div class="dropdown ">
                             <a class="navbar-item" href="#"> Stories</a>
-                        <a href="contents.html" class="navbar-item">Animal Catalogue</a>
+                            <a href="contents.html" class="navbar-item">Animal Catalogue</a>
                         </div>
-                        <a href="#contributors" class="navbar-item">Contributors</a>
+                      
+                        <button type="button" id="saveButton" class="navbar-item">Bookmark</button>
                     </div>
                 </div>
             </nav>
-   
-        </nav>
 
-        </section>
+            </nav>
+
+
+            <!--         <h2> Animals and Fables</h2> -->
+            <!--         <section> -->
+
+            <form id="animalInput">
+                <input type="text" id="animalName" name="animalName" placeholder="Enter an animal" required>
+                <button type="submit" id="searchBtn">Search</button>
+            </form>
 
             <!-- <p> links to different parts of page</p> -->
-<!--             <a href="Contents.html"> Animal catalouge page</a>
+            <!--             <a href="Contents.html"> Animal catalouge page</a>
             <a href="#"> section of page</a>
             <a href="#"> section of page</a>
             <a href="#contributors"> credits and contributors</a> -->
-      
+
+        </header>
 
 
-    </header>
+        <main>
 
-    <main>
+            <aside>
+                <p class="is-size-4" id="aside-p"> Place To View and Look At Other Animals</p>
+                <button type="button" id="wolfLink"><a href="" class="has-text-primary m-2"> Random animal </a></button>
+                <!-- <button type="button"> <a href="" class="has-text-primary m-2">Link to Another animal-2</a></button>
+                <button type="button"> <a href="" class="has-text-primary m-2">Link to Another animal-3</a></button>
+                <button type="button"> <a href="" class="has-text-primary m-2">Link to Another animal-Nth</a></button> -->
 
-   
+            </aside>
 
+            <!-- added clases to be grabed for java functions  -->
+            <section class=" theMainOfAnimals">
 
-        <!-- <aside> -->
+                <!-- <p> Main part of Website</p> -->
+                <!-- All Ids added are subject to change, this is explcitly for the  purpose of testing functions. -->
+                <img src="" alt="An image of the days current animal" class=" imageOfAnAnimal" id="animalPic" />
 
-            <!-- <p> Place to view and look at other animals</p> -->
-            <!-- <button type="button" id="wolfLink"> Link to Wolf</button>
-            <button type="button"> Link to Another animal-2</button>
-            <button type="button"> Link to Another animal-3</button>
-            <button type="button"> Link to Another animal-Nth</button>
-
-        </aside>  -->
-
-        <!-- added clases to be grabed for java functions  -->
-        <section class=" theMainOfAnimals">
-        <!-- <aside>
-            <p> Place to view and look at other animals</p>
-            <button type="button" class="button is-small is-outlined "> Link to
-                Another animal-1</button>
-            <button type="button" class="button is-small is-outlined "> Link to
-                Another animal-2</button>
-            <button type="button" class="button is-small is-outlined "> Link to
-                Another animal-3</button>
-            <button type="button" class="button is-small is-outlined "> Link to
-                Another animal-nth</button>
-        </aside> -->
+                <!-- <p> Possibly some text pertaining to the animal -->
+                <ul class="theFactsofAnimals list-group-flush" id="Factoids">
+                    <!-- <p> Any stories pertaining to the animal will go Here</p> -->
 
 
-        <!-- added clases to be grabed for java functions  -->
-        <section class=" theMainOfAnimals">
-            <!-- <p> Main part of Website</p> -->
-            <!-- All Ids added are subject to change, this is explcitly for the  purpose of testing functions. -->
-            <img src="" alt="An image of the days current animal" class=" imageOfAnAnimal" id="animalPic"/>
-        
-            <!-- <p> Possibly some text pertaining to the animal -->
-            
-          <!-- THIS SHOULD BE THE ONLY THING DIFFERENT, WANTING TO REPLACE THE <p> ELEMEMENT OF THE ANIMAL FACTS -->
-            <ul class = "theFactsofAnimals" id="factoids">
-            
-          <!-- THIS SHOULD BE THE ONLY THING DIFFERENT, WANTING TO REPLACE THE <p> ELEMEMENT OF THE ANIMAL FACTS -->
-            <ul class = "theFactsofAnimals" id="factoids">
-                <p> Any stories pertaining to the animal will go Here</p>
-                <li class="theNameofAnimals">Story-1</li>
-                <li class="theLocationofAnimals">Story-2</li>
-                <li class="theCharacteristicsofAnimals">Story-3</li>
+                    <li class="theNameOfAnAnimal is-size-3">Story-1</li>
+                    <li class="theLocationOfAnAnimal mt-4 is-size-4">Story-2</li>
+                    <li class="theCharacteristicsOfAnAnimal mt-3 is-size-4">Story-3</li>
+                    <hr />
+                    <ul class=" theStoryOfAnimals" id="StoriesTold">
+                        <h2 id="storyH2" class="is-size-3"> The Stories of Today's Animal</h2> <br />
+                        <li class="book1 mt-6 has-text-primary is-size-4"></li>
+                        <li class="book2 mt-4 has-text-primary is-size-4">Ex: Book-2/li>
+                        <li class="book3 mt-4 has-text-primary is-size-4">Ex: Book-3</li>
+                        <li class="book4 mt-4 has-text-primary is-size-4">Ex: Book-4</li>
 
+                    </ul>
+            </section>
 
-
-            <ul class=" theStoryOfAnimals" id="storiesTold">
-                <p> Any stories pertaining to the animal will go Here</p>
-                <li>Ex: Crab eating</li>
-                <li>Ex: Attack of the giant crab</li>
-                <li>Ex: The crab in me</li>
-                <li>Ex: Everyone i love is turning into a crab</li>
-                <li>Story-Nth</li>
-
-
-            <ul class=" theStoryOfAnimals" id="StoriesTold">
-                <p> Any stories pertaining to the animal will go Here</p>                    
-                <li class="book1"></li>
-                <li class="book2">Ex: Book-2/li>
-                <li class="book3">Ex: Book-3</li>
-                <li class="book4">Ex: Book-4</li>
-                
-            </ul>
-        </section>
-
-        <!-- Last section is only theoretical -->
-<!--         <aside> -->
+            <!-- Last section is only theoretical -->
+            <!--         <aside> -->
             <!-- <p> Place to view stories based on location. -->
             <!-- <p> map image that based on which section is clicked sends to a catalouge of stories. -->
-<!--         </aside> -->
+            <!--         </aside> -->
 
-        </aside>
-    </main>
 
-    <footer c>
 
-  <!--    Footer   -->
-  <footer>
+            <!--    Footer   -->
+            <footer>
 
-    <section>
-        <!-- <p> Supplementary Information goes here: </p> -->
-        <p>This page is powered by <a href="https://api-ninjas.com/api/animals"> Api-ninjas/animals</a> and <a
-                href="https://gutendex.com/"> Gutendex</a></p>
-        <p> This page was styled using <a href="https://bulma.io/">Bulma</a></p>
-    </section>
+                <section>
+                    <!-- <p> Supplementary Information goes here: </p> -->
+                    <p>This page is powered by <a href="https://api-ninjas.com/api/animals"> Api-ninjas/animals</a> and
+                        <a href="https://gutendex.com/"> Gutendex</a>
+                    </p>
+                    <p> This page was styled using <a href="https://bulma.io/">Bulma</a></p>
+                </section>
 
-    <section id="contributors">
-        <!-- <p> Credits. this page links to our portfolio page, when clicking on the names</p> -->
-        <a href="https://namahage1.github.io/myportfolio/" target="_blank"> Shelly A. |</a>
-        <a href="https://sentorus67.github.io/Professional-Portfolio/" target="_blank"> Jemeric T. |</a>
-        <a href="https://cnm724.github.io/personal-portfolio/" target="_blank"> Courtney M. |</a>
-        <a href="https://mmalcolmm.github.io/my-portfolio/" target="_blank"> Malcolm F. </a>
-    </section>
-</footer>
-    
+                <section id="contributors">
+                    <!-- <p> Credits. this page links to our portfolio page, when clicking on the names</p> -->
+                    <a href="https://namahage1.github.io/myportfolio/" target="_blank"> Shelly A. |</a>
+                    <a href="https://sentorus67.github.io/Professional-Portfolio/" target="_blank"> Jemeric T. |</a>
+                    <a href="https://cnm724.github.io/personal-portfolio/" target="_blank"> Courtney M. |</a>
+                    <a href="https://mmalcolmm.github.io/my-portfolio/" target="_blank"> Malcolm F. </a>
+                </section>
+            </footer>
 
-    <!-- Link to Javascript -->
-    <!-- <script src='./Assets/java.js'></script> -->
-    <!-- Added Secondary Javascript, Prone to removal -->
-    <script src="./Assets/java/java.js"></script>
+            <!-- Link to Javascript -->
+            <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"></script>
+            <!-- <script src='./Assets/java.js'></script> -->
+            <!-- Added Secondary Javascript, Prone to removal -->
+            <script src="./Assets/java/java.js"></script>
 
-    <!-- Added Secondary Javascript, Prone to removal -->
-   
-    <script src="Assets/java/javaSecondary.js"></script>
 
-</body>
+            <script src="Assets/java/javaSecondary.js"></script>
+
+    </body>
 
 </html>
