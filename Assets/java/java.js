@@ -193,7 +193,6 @@ getAnimalInfo();
 
 // modal for contents page 
 
-// event listener for images
 
 document.querySelectorAll('.image-gallery li').forEach(item => {
     item.addEventListener('click', event => {
@@ -216,6 +215,7 @@ document.querySelectorAll('.image-gallery li').forEach(item => {
             }
             modalTitle.textContent = title;
 
+
             // Description: fun fact or other information
             let description = `Fun Fact: ${animalInfo.characteristics.slogan || "No available fun fact"}`;
             modalDescription.textContent = description;
@@ -228,34 +228,6 @@ document.querySelectorAll('.image-gallery li').forEach(item => {
     });
 });
 
-
-
-// document.querySelectorAll('.image-gallery li').forEach(item => {
-//     item.addEventListener('click', event => {
-//         const animalName = item.dataset.animal;
-
-
-//         // get modal elements
-
-//         const modal = document.getElementById('animalModal');
-//         const modalTitle = document.getElementById('modalTitle');
-//         const modalImage = document.getElementById('modalImage');
-//         const modalDescription = document.getElementById('modalDescription');
-
-//         // populate modal content 
-
-//         modalTitle.textContent = `Animal: ${animalName}`;
-      
-//         modalDescription.textContent = `Description for ${animalName}`;
-
-//         // show modal 
-
-//         modal.classList.add('is-active')
-
-//     });
-// });
-
-// add event listener for close button
 
 document.querySelector('.modal-close').addEventListener('click', () => {
     const modal = document.getElementById('animalModal');
