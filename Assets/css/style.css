@@ -28,6 +28,12 @@ h2 {
   color: whitesmoke;
 }
 
+
+nav {
+  text-align: left;
+}
+
+
 #animalPic {
   max-width: 35vw;
   float: left;
@@ -117,4 +123,21 @@ footer a {
 /* hover */
 .image-gallery li:hover .overlay {
   transform: scale(1);
+
+}aside {
+  width: 40%;
+  padding-left: 0.5rem;
+  margin-left: 0.5rem;
+  float: right;
+  box-shadow: inset 5px 0 5px -5px #29627e;
+  font-style: italic;
+  color: #29627e;
 }
+
+aside > p {
+  margin: 0.5rem;
+  color: darkgreen;
+}
+
+}
+
