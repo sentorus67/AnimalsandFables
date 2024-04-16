@@ -1,5 +1,18 @@
 const userInput = ["wolf", "chicken", "horse", "dolphin", "snake"];
 
+
+const TestLink= document.getElementById('wolfLink');
+const TestPicture= document.getElementById('animalPic');
+const TestFact=document.getElementById('factoids');
+const TestStory= document.getElementById('storiesTold');
+const TestPast= document.getElementById('previousDays')
+
+let animalbox=[];
+const today=dayjs();
+const todayFormatted=today.format('DD/MM/YYYY');
+
+const Tomorrow=(today.add(1,'day')).format('DD/MM/YYYY');
+
 function getAnimalInfo() {
 
 let pickAnimal = userInput[getRandomNumber()];
@@ -30,10 +43,10 @@ let pickAnimal = userInput[getRandomNumber()];
             .then(data => {
                 // malcolm added ---- store fetched data in teh global object
                 if (data && data.length > 0) {
-                    animalData[animalName] = data[0]; // Store first result for the given animal name
+                   // animalData[animalName] = data[0]; // Store first result for the given animal name
                 } 
                 // ---------------------
-                console.log(data);
+                //console.log(data);
 
                let pickAnimalArray = data[getRandomAnimal()];
 
@@ -42,10 +55,9 @@ let pickAnimal = userInput[getRandomNumber()];
                     return i;
                 }
 
-                trueAnimal();
 
                 while (!trueAnimal(pickAnimalArray)) {
-                    let pickAnimal = userInput[getRandomNumber()];
+                    pickAnimal = userInput[getRandomNumber()];
                     pickAnimalArray = fetchAnimalInfo(pickAnimal);
                 }
 
@@ -145,10 +157,10 @@ let pickAnimal = userInput[getRandomNumber()];
                 return response.json();
             })
             .then(function (data) {
-                console.log(data.results);
+                //console.log(data.results);
                 if (data && data.results && Array.isArray(data.results)) {
                     // malcolm added - stpre feetched data in the global object
-                    animalData[animalName].book =  data.results.slice(0, 1)[0]; // store the first book result.  
+                    //animalData[animalName].book =  data.results.slice(0, 1)[0]; // store the first book result.  
                     // ------------------------
                     const limitedData = data.results.slice(0, 5);
                     console.log(limitedData);
@@ -173,11 +185,6 @@ const navbarLinks = document.querySelector("#nav-links");
 mobileBuger.addEventListener('click', () => {
     navbarLinks.classList.toggle('is-active');
 });
-
-getAnimalInfo();
-
-
-
 
 document.querySelectorAll('.image-gallery li').forEach(item => {
     item.addEventListener('click', event => {
@@ -214,12 +221,79 @@ document.querySelectorAll('.image-gallery li').forEach(item => {
 });
 
 
-document.querySelector('.modal-close').addEventListener('click', () => {
-    const modal = document.getElementById('animalModal');
-    modal.classList.remove('is-active');
-});
+// document.querySelector('.modal-close').addEventListener('click', () => {
+//     const modal = document.getElementById('animalModal');
+//     modal.classList.remove('is-active');
+// });
+
+function storeAnimals()
+{
+     
+    animalbox=JSON.parse(localStorage.getItem('pastAnimals'));
+    if(animalbox==null){
+       animalbox=[];
+    }
+    const viewedAnimal={
+    animalImage: $('#animalPic').attr('src'),
+    animalName: $('.theNameOfAnAnimal').text(),
+    animalLocation: $('.theLocationOfAnAnimal').text(),
+    animalFacts: $('.theCharacteristicsOfAnAnimal').text(),
+    book1: $(".book1").text(),
+   // book2: $(".book2").text(),
+   // book3: $(".book3").text(),
+   // book4: $(".book4").text(),
+    date: todayFormatted,
+    }
+  
+    //animalbox.push(viewedAnimal);
+
+    localStorage.setItem('pastAnimals',JSON.stringify(animalbox));
+    alert('The fact page has been saved');
+
+    pastDate=document.createElement('button')
+    pastDate.textContent=`${viewedAnimal.date}: ${viewedAnimal.animalName} `;
+    TestPast.appendChild(pastDate);
+    pastDate.addEventListener('click',function(){
+        retrieveAnimal(viewedAnimal)
+    });
+}
+
+function retrieveAnimal(dateValue){
+    animalbox=JSON.parse(localStorage.getItem('pastAnimals'));
+    //console.log( dateValue);
+    if(animalbox!=null ){
+        pickedDate=animalbox[dateValue];
+        $('#animalPic').attr('src',pickedDate.animalImage);
+        $('.theNameOfAnAnimal').text(pickedDate.animalName);
+        $('.theLocationOfAnAnimal').text(pickedDate.animalLocation);
+        $('.theCharacteristicsOfAnAnimal').text(pickedDate.animalFacts);
+        $(".book1").text(pickedDate.book1);
+       // $(".book2").text(pickedDate.book2);
+       // $(".book3").text(pickedDate.book3);
+       /// $(".book4").text(pickedDate.book4);
+
+    }
+}
+
+
+function setSavedAnimals(){
+    animalbox=JSON.parse(localStorage.getItem('pastAnimals'));
+    if(animalbox !=null){
+        for (let index = 0; index < animalbox.length; index++) {
+            pastDate=document.createElement('button')
+            pastDate.textContent=`${animalbox[index].date}: ${animalbox[index].animalName}  `;
+            TestPast.appendChild(pastDate);
+            pastDate.addEventListener('click',function(){
+                retrieveAnimal(index)
+            });
+
+        }
+    }
+}
 
 getAnimalInfo();
 
-
-
+$(document).ready(function (){
+saveButton.addEventListener('click',storeAnimals);
+ setSavedAnimals();
+});

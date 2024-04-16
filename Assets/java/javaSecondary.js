@@ -32,7 +32,8 @@
 
 // //TestLink.addEventListener("click",switchToAnimal);
 
-// function todaysAnimal(){
+// function todaysAnimal()
+// {
 //     animalbox=JSON.parse(localStorage.getItem('pastAnimals'));
 //     if(animalbox==null){
 //         animalbox=[];
@@ -63,9 +64,9 @@
 //      animalLocation: $('.theLocationOfAnAnimal').text(),
 //      animalFacts: $('.theCharacteristicsOfAnAnimal').text(),
 //      book1: $(".book1").text(),
-//      book2: $(".book2").text(),
-//      book3: $(".book3").text(),
-//      book4: $(".book4").text(),
+//     // book2: $(".book2").text(),
+//     // book3: $(".book3").text(),
+//     // book4: $(".book4").text(),
 //      date: todayFormatted,
 //      }
    
@@ -84,9 +85,9 @@
 //         $('.theLocationOfAnAnimal').text(pickedDate.animalLocation);
 //         $('.theCharacteristicsOfAnAnimal').text(pickedDate.animalFacts);
 //         $(".book1").text(pickedDate.book1);
-//         $(".book2").text(pickedDate.book2);
-//         $(".book3").text(pickedDate.book3);
-//         $(".book4").text(pickedDate.book4);
+//        // $(".book2").text(pickedDate.book2);
+//        // $(".book3").text(pickedDate.book3);
+//        /// $(".book4").text(pickedDate.book4);
 
 //     }
 // }
