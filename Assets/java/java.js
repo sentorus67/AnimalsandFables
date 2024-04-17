@@ -9,9 +9,9 @@ const TestPast= document.getElementById('previousDays')
 
 let animalbox=[];
 const today=dayjs();
-const todayFormatted=today.format('DD/MM/YYYY');
+const todayFormatted=today.format('MM/DD/YYYY');
 
-const Tomorrow=(today.add(1,'day')).format('DD/MM/YYYY');
+const Tomorrow=(today.add(1,'day')).format('MM/DD/YYYY');
 
 function getAnimalInfo() {
     //     if (!newDay()) {
@@ -102,12 +102,12 @@ function getAnimalInfo() {
 
                 function printingAnimal() {
                     // $('.theNameOfAnAnimal').text(`Animal of the Day: ${pickAnimalArray.name}`);
-                    $('.theNameOfAnAnimal').text(`Animal of the Day:`).css({
-                        'font-family': 'Arial, sans-serif',
-                        'font-size': '20px',
-                        'color': 'darkgreen',
-                        'font-weight': 'bold'
-                    });
+                    // $('.theNameOfAnAnimal').text(`Animal of the Day:`).css({
+                    //     'font-family': 'Arial, sans-serif',
+                    //     'font-size': '20px',
+                    //     'color': 'darkgreen',
+                    //     'font-weight': 'bold'
+                    // });
                     //can be put on the same line as Animal of the Day unless we are trying to style them differently?
                     $('.theNameOfAnAnimal').text(`${pickAnimalArray.name}`);
 
@@ -145,11 +145,6 @@ function getAnimalInfo() {
             });
     }
 
-    function getRandomBook() {
-        const i = Math.floor(Math.random() * 5);
-        return i;
-    }
-
     // fetch story
     function fetchBookInfo(animalName) {
         fetch('https://gutendex.com/books/?topic=animal&search=' + animalName, {
@@ -167,7 +162,10 @@ function getAnimalInfo() {
                     const limitedData = data.results.slice(0, 5);
                     console.log(limitedData);
                     
-                    $(".book1").wrap("<a href='" + limitedData[getRandomBook()].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[getRandomBook()].title}`);
+                    $(".book1").wrap("<a href='" + limitedData[0].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[0].title}`);
+                    $(".book2").wrap("<a href='" + limitedData[1].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[1].title}`);
+                    $(".book3").wrap("<a href='" + limitedData[2].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[2].title}`);
+                    $(".book4").wrap("<a href='" + limitedData[3].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[3].title}`);
 
                     console.log(limitedData[0].formats["text/html"]);
                 } else {
