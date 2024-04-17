@@ -77,6 +77,7 @@ function fetchAnimalInfo(animalName) {
                 animalCriteriaInfo[animalName].printInfo(pickAnimalArray); 
                 fetchBookInfo(animalName);
             } else {
+                fetchAnimalInfo(animalName);
                 console.log(`"${animalName}" doesn't meet the criteria.`);
             }
 
