@@ -40,41 +40,28 @@
 
     <main>
 
-        <section class="availableAnimals">
-
-
-
-            <article class="message">
-                <div class="message-body">
-                    <p class="theNameOfAnAnimal"></p>
-                    <p class="theLocationOfAnAnimal"></p>
-                    <p class="theCharacteristicsOfAnAnimal"></p>
-                    <p class="book1"></p>
-                </div>
-            </article>
-            <!-- Modal structure -->
-          
+        <section class="availableAnimals">     
 
             <ul class="image-gallery">
                 <li data-animal="Chicken">
                     <img src="Assets/Images/Chicken.webp" alt="Picture of a chicken">
-                    <div class="overlay"><span>Chicken</span></div>
+                    <div class="overlay" id="chickenImg"><span>Chicken</span></div>
                 </li>
                 <li data-animal="Dolphin">
                     <img src="Assets/Images/Dolphin.webp" alt="Picture of a dolphin">
-                    <div class="overlay"><span>Dolphin</span></div>
+                    <div class="overlay" id="dolphinImg"><span>Dolphin</span></div>
                 </li>
                 <li data-animal="Horse">
                     <img src="Assets/Images/Horse.webp" alt="Picture of a horse">
-                    <div class="overlay"><span>Horse</span></div>
+                    <div class="overlay" id="horseImg"><span>Horse</span></div>
                 </li>
                 <li data-animal="Snake">
                     <img src="Assets/Images/Snake.webp" alt="Picture of a snake">
-                    <div class="overlay"><span>Snake</span></div>
+                    <div class="overlay" id="snakeImg"><span>Snake</span></div>
                 </li>
                 <li data-animal="Wolf">
                     <img src="Assets/Images/Wolf.webp" alt="Picture of a wolf">
-                    <div class="overlay"><span>Wolf</span></div>
+                    <div class="overlay" id="wolfImg"><span>Wolf</span></div>
                 </li>
             </ul>
 
@@ -83,14 +70,16 @@
                 <div class="modal-content">
                     <div class="box">
                         <p id="modalTitle"></p>
-                        <img id="modalImage" src="" alt="">
+                        <p id="modalLocation"></p>
                         <p id="modalDescription"></p>
+                        <p id="modalBook"></p>
+
                     </div>
                 </div>
                 <button class="modal-close is-large" aria-label="close"></button>
             </div>
 
-            <!-- The above will have a link that, when clicked, returns the user to the index with the animal being the main subjects -->
+            <!-- The above will have a link that, when clicked, returns the user to the index with the animal being the main subjects
         </section>
 
     </main>
@@ -98,7 +87,7 @@
     <footer>
 
         <section>
-            <!-- <p> Supplementary Information goes here: </p> -->
+            <-- <p> Supplementary Information goes here: </p> -->
             <p>This page is powered by <a href="https://api-ninjas.com/api/animals"> Api-ninjas/animals</a> and <a
                     href="https://gutendex.com/"> Gutendex</a></p>
             <p> This page was styled using <a href="https://bulma.io/">Bulma</a></p>
