@@ -5,8 +5,6 @@ const horse = userInput[2];
 const dolphin = userInput[3];
 const snake = userInput[4];
 
-// function getAnimalInfo() {
-
 // Fetch animal info
 function fetchAnimalInfo(animalName) {
     fetch('https://api.api-ninjas.com/v1/animals?name=' + animalName, {
@@ -30,62 +28,60 @@ function fetchAnimalInfo(animalName) {
                 return i;
             }
 
-            function trueChicken(pickAnimalArray) {
-                const taxonomy = pickAnimalArray.taxonomy;
-                return taxonomy.class === "Aves";
-            }
+            //creates an object that holds its function based on that animal picked
+            const animalCriteriaInfo = {
+                "chicken": {
+                    criteria: function (animalData) {
+                        return animalData.taxonomy.class === "Aves";
+                    },
+                    printInfo: function (animalData) {
+                        printingAnimal(animalData);
+                    }
+                },
+                "wolf": {
+                    criteria: function (animalData) {
+                        return animalData.taxonomy.family === "Canidae"; 
+                    },
+                    printInfo: function (animalData) {
+                        printingAnimal(animalData); 
+                    }
+                },
+                "dolphin": {
+                    criteria: function (animalData) {
+                        return animalData.taxonomy.family === "Delphinidae"; 
+                    },
+                    printInfo: function (animalData) {
+                        printingAnimal(animalData); 
+                    }
+                },
+                "horse": {
+                    criteria: function (animalData) {
+                        return animalData.taxonomy.family === "Equidae"; 
+                    },
+                    printInfo: function (animalData) {
+                        printingAnimal(animalData); 
+                    }
+                },
+                "snake": {
+                    criteria: function (animalData) {
+                        return animalData.taxonomy.class === "Reptilia"; 
+                    },
+                    printInfo: function (animalData) {
+                        printingAnimal(animalData); 
+                    }
+                },
 
-            if (!trueChicken(pickAnimalArray)) {
-                return fetchAnimalInfo('chicken');
+            };
+
+            if (animalCriteriaInfo[animalName] && animalCriteriaInfo[animalName].criteria(pickAnimalArray)) {
+                animalCriteriaInfo[animalName].printInfo(pickAnimalArray); 
+                fetchBookInfo(animalName);
             } else {
-                printingAnimal(pickAnimalArray);
+                console.log(`"${animalName}" doesn't meet the criteria.`);
             }
-
-            // function trueWolf(pickAnimalArray) {
-            //     const taxonomy = pickAnimalArray.taxonomy;
-            //     return taxonomy.class === "Aves";
-            // }
-
-            // if (!trueWolf(pickAnimalArray)) {
-            //     return fetchAnimalInfo('chicken');
-            // } else {
-            //     printingAnimal(pickAnimalArray);
-            // }
-
-            // function trueHorse(pickAnimalArray) {
-            //     const taxonomy = pickAnimalArray.taxonomy;
-            //     return taxonomy.class === "Aves";
-            // }
-
-            // if (!trueHorse(pickAnimalArray)) {
-            //     return fetchAnimalInfo('chicken');
-            // } else {
-            //     printingAnimal(pickAnimalArray);
-            // }
-
-            // function trueDolphin(pickAnimalArray) {
-            //     const taxonomy = pickAnimalArray.taxonomy;
-            //     return taxonomy.class === "Aves";
-            // }
-
-            // if (!trueDolphin(pickAnimalArray)) {
-            //     return fetchAnimalInfo('chicken');
-            // } else {
-            //     printingAnimal(pickAnimalArray);
-            // }
-
-            // function trueSnake(pickAnimalArray) {
-            //     const taxonomy = pickAnimalArray.taxonomy;
-            //     return taxonomy.class === "Aves";
-            // }
-
-            // if (!trueSnake(pickAnimalArray)) {
-            //     return fetchAnimalInfo('chicken');
-            // } else {
-            //     printingAnimal(pickAnimalArray);
-            // }
 
             function printingAnimal() {
+                $('.theNameOfAnAnimal').text(`${pickAnimalArray.name}`);
 
                 if (pickAnimalArray.locations) {
                     $('.theLocationOfAnAnimal').text(`Location: ${pickAnimalArray.locations}`);
@@ -104,21 +100,11 @@ function fetchAnimalInfo(animalName) {
                 }
             }
 
-            if (!trueChicken(pickAnimalArray)) {
-                return fetchAnimalInfo('chicken');
-            } else {
-                printingAnimal(pickAnimalArray);
-            }
-
         })
 
         .catch(error => {
             console.error('Error:', error);
         });
-}
-function getRandomBook() {
-    const i = Math.floor(Math.random() * 5);
-    return i;
 }
 
 // fetch story
@@ -136,7 +122,7 @@ function fetchBookInfo(animalName) {
                 const limitedData = data.results.slice(0, 5);
                 console.log(limitedData);
 
-                $(".book1").wrap("<a href='" + limitedData[getRandomBook()].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[getRandomBook()].title}`);
+                $(".book1").wrap("<a href='" + limitedData[0].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[0].title}`);
 
             } else {
                 console.log("No results found or invalid data structure.");
@@ -158,39 +144,58 @@ chickenButton.addEventListener('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
 
+    $(".theNameofAnAnimal").empty();
     $(".theLocationOfAnAnimal").empty();
     $(".theCharacteristicsofAnAnimal").empty();
     $(".book1").empty();
 
-
     fetchAnimalInfo(chicken);
-    fetchBookInfo(chicken);
 });
 
 dolphinButton.addEventListener('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
+
+    $(".theNameofAnAnimal").empty();
+    $(".theLocationOfAnAnimal").empty();
+    $(".theCharacteristicsofAnAnimal").empty();
+    $(".book1").empty();
+
     fetchAnimalInfo(dolphin);
-    fetchBookInfo(dolphin);
 });
 
 horseButton.addEventListener('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
+
+    $(".theNameofAnAnimal").empty();
+    $(".theLocationOfAnAnimal").empty();
+    $(".theCharacteristicsofAnAnimal").empty();
+    $(".book1").empty();
+
     fetchAnimalInfo(horse);
-    fetchBookInfo(horse);
 });
 
 snakeButton.addEventListener('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
+
+    $(".theNameofAnAnimal").empty();
+    $(".theLocationOfAnAnimal").empty();
+    $(".theCharacteristicsofAnAnimal").empty();
+    $(".book1").empty();
+
     fetchAnimalInfo(snake);
-    fetchBookInfo(snake);
 });
 
 wolfButton.addEventListener('click', function (event) {
     event.preventDefault();
     event.stopPropagation();
+
+    $(".theNameofAnAnimal").empty();
+    $(".theLocationOfAnAnimal").empty();
+    $(".theCharacteristicsofAnAnimal").empty();
+    $(".book1").empty();
+
     fetchAnimalInfo(wolf);
-    fetchBookInfo(wolf);
 });
