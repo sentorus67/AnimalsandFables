@@ -200,3 +200,34 @@ wolfButton.addEventListener('click', function (event) {
 
     fetchAnimalInfo(wolf);
 });
+
+
+modal for contents html 
+
+// Add event listener for images
+document.querySelectorAll('.image-gallery li').forEach(item => {
+    item.addEventListener('click', event => {
+        const animalName = item.dataset.animal; // Get animal name from data attribute
+        
+        // Get modal elements
+        const modal = document.getElementById('animalModal');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalImage = document.getElementById('modalImage');
+        const modalDescription = document.getElementById('modalDescription');
+
+        // Populate modal content
+        modalTitle.textContent = `Animal: ${animalName}`;
+        modalImage.src = item.querySelector('img').src;
+        modalDescription.textContent = `Description for ${animalName}`; // Replace this with actual description
+
+        // Show modal
+        modal.classList.add('is-active');
+        console.log(modalDescription)
+    });
+});
+
+// Add event listener to close button
+document.querySelector('.modal-close').addEventListener('click', () => {
+    const modal = document.getElementById('animalModal');
+    modal.classList.remove('is-active');
+});
