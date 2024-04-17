@@ -37,10 +37,8 @@ h2 {
 
 #storyH2 {
   /* background: linear-gradient(to right, rgb(182, 244, 146), rgb(51, 139, 147)); */
-  /* color: whitesmoke;
- */
- color: black;
-  
+
+  color: whitesmoke;
 }
 
 nav {
@@ -51,7 +49,6 @@ nav {
 nav {
   text-align: left;
 }
-
 
 #animalPic {
   max-width: 35vw;
@@ -142,8 +139,7 @@ footer a {
 /* hover */
 .image-gallery li:hover .overlay {
   transform: scale(1);
-}
-aside {
+}aside {
   width: 40%;
   padding-left: 0.5rem;
   margin-left: 0.5rem;
