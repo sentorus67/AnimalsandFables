@@ -1,11 +1,3 @@
-userInput = ["wolf", "chicken", "horse", "dolphin", "snake"];
-const wolf = userInput[0];
-const chicken = userInput[1];
-const horse = userInput[2];
-const dolphin = userInput[3];
-const snake = userInput[4];
-
-// Fetch animal info
 function fetchAnimalInfo(animalName) {
     fetch('https://api.api-ninjas.com/v1/animals?name=' + animalName, {
         method: 'GET',
@@ -28,78 +20,43 @@ function fetchAnimalInfo(animalName) {
                 return i;
             }
 
-            //creates an object that holds its function based on that animal picked
-            const animalCriteriaInfo = {
-                "chicken": {
-                    criteria: function (animalData) {
-                        return animalData.taxonomy.class === "Aves";
-                    },
-                    printInfo: function (animalData) {
-                        printingAnimal(animalData);
-                    }
-                },
-                "wolf": {
-                    criteria: function (animalData) {
-                        return animalData.taxonomy.family === "Canidae"; 
-                    },
-                    printInfo: function (animalData) {
-                        printingAnimal(animalData); 
-                    }
-                },
-                "dolphin": {
-                    criteria: function (animalData) {
-                        return animalData.taxonomy.family === "Delphinidae"; 
-                    },
-                    printInfo: function (animalData) {
-                        printingAnimal(animalData); 
-                    }
-                },
-                "horse": {
-                    criteria: function (animalData) {
-                        return animalData.taxonomy.family === "Equidae"; 
-                    },
-                    printInfo: function (animalData) {
-                        printingAnimal(animalData); 
-                    }
-                },
-                "snake": {
-                    criteria: function (animalData) {
-                        return animalData.taxonomy.class === "Reptilia"; 
-                    },
-                    printInfo: function (animalData) {
-                        printingAnimal(animalData); 
-                    }
-                },
+            const modal = document.getElementById('animalModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalDescription = document.getElementById('modalDescription');
+            const modalLocation = document.getElementById('modalLocation')
 
-            };
+            let name = pickAnimalArray.name;
+            let description;
+            let location;
 
-            if (animalCriteriaInfo[animalName] && animalCriteriaInfo[animalName].criteria(pickAnimalArray)) {
-                animalCriteriaInfo[animalName].printInfo(pickAnimalArray); 
-                fetchBookInfo(animalName);
+            if (pickAnimalArray.characteristics.slogan) {
+                description = `Fun Fact: ${pickAnimalArray.characteristics.slogan}`;
+            } else if (pickAnimalArray.characteristics.predators) {
+                description = `Predators: ${pickAnimalArray.characteristics.predators}`;
+            } else if (pickAnimalArray.characteristics.prey) {
+                description = `Prey: ${pickAnimalArray.characteristics.prey}`;
+            } else if (pickAnimalArray.characteristics.lifespan) {
+                description = `Lifespan: ${pickAnimalArray.characteristics.lifespan}`;
             } else {
-                fetchAnimalInfo(animalName);
-                console.log(`"${animalName}" doesn't meet the criteria.`);
+                description = "No additional information available.";
             }
 
-            function printingAnimal() {
-                $('.theNameOfAnAnimal').text(`${pickAnimalArray.name}`);
-
-                if (pickAnimalArray.locations) {
-                    $('.theLocationOfAnAnimal').text(`Location: ${pickAnimalArray.locations}`);
-                } else if (pickAnimalArray.characteristics.location) {
-                    $('.theLocationOfAnAnimal').text(`Location: ${pickAnimalArray.characteristics.location}`);
-                } else {
-                    $('.theLocationOfAnAnimal').text(`Habitat: ${pickAnimalArray.habitat}`);
-                }
-
-                if (pickAnimalArray.characteristics.slogan) {
-                    $('.theCharacteristicsOfAnAnimal').text(`Fun Fact: ${pickAnimalArray.characteristics.slogan}`);
-                } else if (pickAnimalArray.characteristics.predators) {
-                    $('.theCharacteristicsOfAnAnimal').text(`Predators: ${pickAnimalArray.characteristics.predators}`);
-                } else {
-                    $('.theCharacteristicsOfAnAnimal').text(`Prey: ${pickAnimalArray.characteristics.prey}`);
-                }
+            if (pickAnimalArray.locations) {
+                location = `Location: ${pickAnimalArray.locations}`;
+            } else if (pickAnimalArray.characteristics.location) {
+                location = `Location: ${pickAnimalArray.characteristics.location}`;
+            } else if(pickAnimalArray.habitat){
+                location = `Habitat: ${pickAnimalArray.habitat}`;
+            }else {
+                location = "No additional information available.";
             }
+            modalTitle.textContent = `Animal: ${name}`;
+            modalDescription.textContent = description;
+            modalLocation.textContent = location;
+            fetchBookInfo(animalName);
+
+            // Show modal
+            modal.classList.add('is-active');
 
         })
 
@@ -119,110 +76,34 @@ function fetchBookInfo(animalName) {
             return response.json();
         })
         .then(function (data) {
-            if (data && data.results && Array.isArray(data.results)) {
-                const limitedData = data.results.slice(0, 5);
-                console.log(limitedData);
 
-                $(".book1").wrap("<a href='" + limitedData[0].formats["text/html"] + "' target='_blank'></a>").text(`Title: ${limitedData[0].title}`);
+            const modalBook = document.getElementById('modalBook')
+            
+            const bookData = data.results[0];
+            let book = bookData.title;
 
+            modalBook.textContent = book;
+        
+            if (data.results && data.results.length > 0) {
+                const bookTitle = bookData.title;
+                const bookLink = bookData.formats["text/html"];
+                modalBook.innerHTML = `<a href="${bookLink}" target="_blank">Story About Me: ${bookTitle}</a>`;
             } else {
-                console.log("No results found or invalid data structure.");
                 return;
             }
 
         });
-
 }
-// }
 
-const chickenButton = document.getElementById('chickenImg');
-const dolphinButton = document.getElementById('dolphinImg');
-const horseButton = document.getElementById('horseImg');
-const snakeButton = document.getElementById('snakeImg');
-const wolfButton = document.getElementById('wolfImg');
-
-chickenButton.addEventListener('click', function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    $(".theNameofAnAnimal").empty();
-    $(".theLocationOfAnAnimal").empty();
-    $(".theCharacteristicsofAnAnimal").empty();
-    $(".book1").empty();
-
-    fetchAnimalInfo(chicken);
-});
-
-dolphinButton.addEventListener('click', function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    $(".theNameofAnAnimal").empty();
-    $(".theLocationOfAnAnimal").empty();
-    $(".theCharacteristicsofAnAnimal").empty();
-    $(".book1").empty();
-
-    fetchAnimalInfo(dolphin);
-});
-
-horseButton.addEventListener('click', function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    $(".theNameofAnAnimal").empty();
-    $(".theLocationOfAnAnimal").empty();
-    $(".theCharacteristicsofAnAnimal").empty();
-    $(".book1").empty();
-
-    fetchAnimalInfo(horse);
-});
-
-snakeButton.addEventListener('click', function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    $(".theNameofAnAnimal").empty();
-    $(".theLocationOfAnAnimal").empty();
-    $(".theCharacteristicsofAnAnimal").empty();
-    $(".book1").empty();
-
-    fetchAnimalInfo(snake);
-});
-
-wolfButton.addEventListener('click', function (event) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    $(".theNameofAnAnimal").empty();
-    $(".theLocationOfAnAnimal").empty();
-    $(".theCharacteristicsofAnAnimal").empty();
-    $(".book1").empty();
-
-    fetchAnimalInfo(wolf);
-});
-
-
-modal for contents html 
+// modal for contents html 
 
 // Add event listener for images
 document.querySelectorAll('.image-gallery li').forEach(item => {
     item.addEventListener('click', event => {
-        const animalName = item.dataset.animal; // Get animal name from data attribute
-        
-        // Get modal elements
-        const modal = document.getElementById('animalModal');
-        const modalTitle = document.getElementById('modalTitle');
-        const modalImage = document.getElementById('modalImage');
-        const modalDescription = document.getElementById('modalDescription');
-
-        // Populate modal content
-        modalTitle.textContent = `Animal: ${animalName}`;
-        modalImage.src = item.querySelector('img').src;
-        modalDescription.textContent = `Description for ${animalName}`; // Replace this with actual description
-
-        // Show modal
-        modal.classList.add('is-active');
-        console.log(modalDescription)
+        event.preventDefault();
+        const animalName = item.dataset.animal;
+        fetchAnimalInfo(animalName);
+    
     });
 });
 
