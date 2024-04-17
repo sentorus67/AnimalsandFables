@@ -202,7 +202,7 @@ wolfButton.addEventListener('click', function (event) {
 });
 
 
-modal for contents html 
+// modal for contents html 
 
 // Add event listener for images
 document.querySelectorAll('.image-gallery li').forEach(item => {
