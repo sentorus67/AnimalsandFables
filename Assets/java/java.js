@@ -199,7 +199,7 @@ function storeAnimals()
     date: todayFormatted,
     }
   
-    //animalbox.push(viewedAnimal);
+    animalbox.push(viewedAnimal);
 
     localStorage.setItem('pastAnimals',JSON.stringify(animalbox));
     alert('The fact page has been saved');
