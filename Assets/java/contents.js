@@ -1,7 +1,7 @@
 function fetchAnimalInfo(animalName) {
     fetch('https://api.api-ninjas.com/v1/animals?name=' + animalName, {
         method: 'GET',
-        headers: { 'X-Api-Key': 'tN43+ANwhRe+jQOeMlmEMg==mdTQu9dGB6ZbUzQy' }
+        headers: { 'X-Api-Key': 'QeWk/29ehyKm2Vzi4m7XwQ==CmgYJTcl6d5OkvmA' }
     })
         .then(response => {
             if (!response.ok) {
@@ -20,6 +20,35 @@ function fetchAnimalInfo(animalName) {
                 return i;
             }
 
+
+            //     function trueChicken(pickAnimalArray) {
+            //         const taxonomy = pickAnimalArray.taxonomy;
+            //         return taxonomy.class === "Aves";
+            //     }
+            //         function trueWolf(pickAnimalArray) {
+            //             const taxonomy = pickAnimalArray.taxonomy;
+            //             return taxonomy.family === "Canidae";
+            //         }
+
+            //         function trueHorse(pickAnimalArray) {
+            //             const taxonomy = pickAnimalArray.taxonomy;
+            //             return taxonomy.family === "Equidae";
+            //         }
+
+                
+            //         function trueDolphin(pickAnimalArray) {
+            //             const taxonomy = pickAnimalArray.taxonomy;
+            //             return taxonomy.family === "Delphinidae";
+            //         }
+
+                
+            //         function trueSnake(pickAnimalArray) {
+            //             const taxonomy = pickAnimalArray.taxonomy;
+            //             return taxonomy.class === "Reptilia";
+            //         }
+
+            //     }
+            // }
             const modal = document.getElementById('animalModal');
             const modalTitle = document.getElementById('modalTitle');
             const modalDescription = document.getElementById('modalDescription');
@@ -45,9 +74,9 @@ function fetchAnimalInfo(animalName) {
                 location = `Location: ${pickAnimalArray.locations}`;
             } else if (pickAnimalArray.characteristics.location) {
                 location = `Location: ${pickAnimalArray.characteristics.location}`;
-            } else if(pickAnimalArray.habitat){
+            } else if (pickAnimalArray.habitat) {
                 location = `Habitat: ${pickAnimalArray.habitat}`;
-            }else {
+            } else {
                 location = "No additional information available.";
             }
             modalTitle.textContent = `Animal: ${name}`;
@@ -78,12 +107,12 @@ function fetchBookInfo(animalName) {
         .then(function (data) {
 
             const modalBook = document.getElementById('modalBook')
-            
+
             const bookData = data.results[0];
             let book = bookData.title;
 
             modalBook.textContent = book;
-        
+
             if (data.results && data.results.length > 0) {
                 const bookTitle = bookData.title;
                 const bookLink = bookData.formats["text/html"];
@@ -103,7 +132,6 @@ document.querySelectorAll('.image-gallery li').forEach(item => {
         event.preventDefault();
         const animalName = item.dataset.animal;
         fetchAnimalInfo(animalName);
-    
     });
 });
 
