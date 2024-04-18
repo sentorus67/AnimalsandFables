@@ -12,7 +12,6 @@ function fetchAnimalInfo(animalName) {
         })
         .then(data => {
             console.log(data);
-
             let pickAnimalArray = data[getRandomAnimal()];
 
             function getRandomAnimal() {
@@ -20,35 +19,52 @@ function fetchAnimalInfo(animalName) {
                 return i;
             }
 
+            function trueChicken(pickAnimalArray) {
+                const taxonomy = pickAnimalArray.taxonomy;
+                return taxonomy.class === "Aves";
+            }
+            function trueWolf(pickAnimalArray) {
+                const taxonomy = pickAnimalArray.taxonomy;
+                return taxonomy.family === "Canidae";
+            }
+            
+            function trueHorse(pickAnimalArray) {
+                const taxonomy = pickAnimalArray.taxonomy;
+                return taxonomy.family === "Equidae";
+            }
+            
+            function trueDolphin(pickAnimalArray) {
+                const taxonomy = pickAnimalArray.taxonomy;
+                return taxonomy.family === "Delphinidae";
+            }
+            
+            function trueSnake(pickAnimalArray) {
+                const taxonomy = pickAnimalArray.taxonomy;
+                return taxonomy.class === "Reptilia";
+            }
 
-            //     function trueChicken(pickAnimalArray) {
-            //         const taxonomy = pickAnimalArray.taxonomy;
-            //         return taxonomy.class === "Aves";
-            //     }
-            //         function trueWolf(pickAnimalArray) {
-            //             const taxonomy = pickAnimalArray.taxonomy;
-            //             return taxonomy.family === "Canidae";
-            //         }
+            if (animalName === "Chicken" && trueChicken(pickAnimalArray)) {
+                modalPrint();
+                return;
+            } else if (animalName === "Wolf" && trueWolf(pickAnimalArray)) {
+                modalPrint();
+                return;
+            } else if (animalName === "Horse" && trueHorse(pickAnimalArray)) {
+                modalPrint();
+                return;
+            } else if (animalName === "Dolphin" && trueDolphin(pickAnimalArray)) {
+                modalPrint();
+                return;
+            } else if (animalName === "Snake" && trueSnake(pickAnimalArray)) {
+                modalPrint();
+                return;
+            } else {
+                fetchAnimalInfo(animalName);
+                console.log("Did not meet criteria");
+            }
 
-            //         function trueHorse(pickAnimalArray) {
-            //             const taxonomy = pickAnimalArray.taxonomy;
-            //             return taxonomy.family === "Equidae";
-            //         }
-
-                
-            //         function trueDolphin(pickAnimalArray) {
-            //             const taxonomy = pickAnimalArray.taxonomy;
-            //             return taxonomy.family === "Delphinidae";
-            //         }
-
-                
-            //         function trueSnake(pickAnimalArray) {
-            //             const taxonomy = pickAnimalArray.taxonomy;
-            //             return taxonomy.class === "Reptilia";
-            //         }
-
-            //     }
-            // }
+function modalPrint() {
+            // prints fetched data to the modal
             const modal = document.getElementById('animalModal');
             const modalTitle = document.getElementById('modalTitle');
             const modalDescription = document.getElementById('modalDescription');
@@ -82,10 +98,10 @@ function fetchAnimalInfo(animalName) {
             modalTitle.textContent = `Animal: ${name}`;
             modalDescription.textContent = description;
             modalLocation.textContent = location;
-            fetchBookInfo(animalName);
 
             // Show modal
             modal.classList.add('is-active');
+        }
 
         })
 
@@ -93,6 +109,7 @@ function fetchAnimalInfo(animalName) {
             console.error('Error:', error);
         });
 }
+fetchBookInfo(animalName);
 
 // fetch story
 function fetchBookInfo(animalName) {
