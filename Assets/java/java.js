@@ -30,7 +30,7 @@ function getAnimalInfo() {
         function fetchAnimalInfo(animalName) {
             fetch('https://api.api-ninjas.com/v1/animals?name=' + animalName, {
                 method: 'GET',
-                headers: { 'X-Api-Key': 'tN43+ANwhRe+jQOeMlmEMg==mdTQu9dGB6ZbUzQy' }
+                headers: { 'X-Api-Key': 'QeWk/29ehyKm2Vzi4m7XwQ==CmgYJTcl6d5OkvmA' }
             })
                 .then(response => {
                     if (!response.ok) {
