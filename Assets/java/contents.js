@@ -98,6 +98,7 @@ function modalPrint() {
             modalTitle.textContent = `Animal: ${name}`;
             modalDescription.textContent = description;
             modalLocation.textContent = location;
+            fetchBookInfo(animalName);
 
             // Show modal
             modal.classList.add('is-active');
@@ -109,7 +110,7 @@ function modalPrint() {
             console.error('Error:', error);
         });
 }
-fetchBookInfo(animalName);
+
 
 // fetch story
 function fetchBookInfo(animalName) {
